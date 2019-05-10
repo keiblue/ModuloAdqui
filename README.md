@@ -22,5 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-# Felipe Malermo 
+# Felipe 
 # Jose Garrido
