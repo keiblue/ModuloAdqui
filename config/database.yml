@@ -12,7 +12,6 @@ default: &default
   username: adquisicion
   password: adquisicion
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
 
 development:
   <<: *default
