@@ -2,7 +2,23 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @provider.name %>
+  <%= @provider.name %><br>
+  <strong>Direccion:</strong>
+  <%= @provider.address.calle %>#<%= @provider.address.numero %>,<%= @provider.address.comuna%>,<%= @provider.address.region %><br>
+  <strong>Contrato:</strong>
+  <%= @provider.agreement.code %><br>
+  <strong>Ordenes:</strong>
+
+  <div class="card">
+    <% @provider.orders.each do|o| %>
+    <h5>orden id:</h5><%= o.id%>
+    <h5>nombre usuario:</h5> <%=o.user.name%> <%=o.user.last_name%>
+    <h5>fecha de envio aprox:</h5> <%= o.estimated_delivery_date%> 
+    <h5>sucursal:</h5><%= o.store.name%>
+    <h5>direcion sucursal:</h5> <%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %>   
+<% end %>
+  </div>
+
 </p>
 
 <%= link_to 'Edit', edit_provider_path(@provider) %> |
