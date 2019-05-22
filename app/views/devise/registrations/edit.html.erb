@@ -23,6 +23,11 @@
     <%= f.text_field :rutito %>
   </div>
 
+  <div class="field">
+      <%= f.label :role_id%>
+      <%= f.select(:role_id, options_for_select([['Administrador',1],['Supervisor',2],['Empleado',3],['Payaso',4]])) %>
+    </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
