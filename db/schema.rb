@@ -10,12 +10,90 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_144740) do
+ActiveRecord::Schema.define(version: 2019_05_22_182734) do
+
+  create_table "addresses", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "region"
+    t.string "comuna"
+    t.string "calle"
+    t.integer "numero"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "agreements", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "code"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventaries", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "store_id", default: 1
+    t.index ["store_id"], name: "index_inventaries_on_store_id"
+  end
+
+  create_table "orders", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "order_date"
+    t.date "estimated_delivery_date"
+    t.date "delivery_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", default: 1
+    t.bigint "provider_id", default: 1
+    t.bigint "status_id", default: 1
+    t.bigint "store_id", default: 1
+    t.index ["provider_id"], name: "index_orders_on_provider_id"
+    t.index ["status_id"], name: "index_orders_on_status_id"
+    t.index ["store_id"], name: "index_orders_on_store_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "providers", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "rut"
+    t.string "rut_dv", limit: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "address_id", default: 1
+    t.bigint "service_id", default: 1
+    t.bigint "agreement_id", default: 1
+    t.index ["address_id"], name: "index_providers_on_address_id"
+    t.index ["agreement_id"], name: "index_providers_on_agreement_id"
+    t.index ["service_id"], name: "index_providers_on_service_id"
+  end
 
   create_table "roles", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "role_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "services", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "statuses", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "status"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stores", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "address_id", default: 1
+    t.index ["address_id"], name: "index_stores_on_address_id"
   end
 
   create_table "users", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -30,6 +108,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_144740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id", default: 3
+    t.string "rutito_dv", limit: 1, default: "1"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"

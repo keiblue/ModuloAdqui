@@ -1,0 +1,42 @@
+<%= form_with(model: provider, local: true) do |form| %>
+  <% if provider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(provider.errors.count, "error") %> prohibited this provider from being saved:</h2>
+
+      <ul>
+      <% provider.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Razon Social' %>
+    <%= form.text_field :rut %> - <%= form.text_field :rut_dv %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Dirreccion' %>
+    <%= form.select :address_id, options_from_collection_for_select(@address, "id", "calle")%>
+  </div>
+
+  <div class="field">
+    <%= form.label 'tipo servicio' %>
+    <%= form.select :service_id, options_from_collection_for_select(@services, "id", "name")%>
+  </div>
+
+  <div class="field">
+    <%= form.label 'codigo contrato' %>
+    <%= form.select :agreement_id, options_from_collection_for_select(@contrato, "id", "code")%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
