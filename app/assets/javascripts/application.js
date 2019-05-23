@@ -16,5 +16,4 @@
 //= require booststrap
 //= require jquery-rails
 //= require popper
-//= require jquery
 //= require_tree .
