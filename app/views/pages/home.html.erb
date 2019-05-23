@@ -1,5 +1,7 @@
 <%= render 'layouts/header'%>
 
+<% is_admin?%>
+
 <% @users.each do |u| %>
     <h2><%= u.name%>  <%= u.last_name%> // <%= u.role.role_name%></h2> 
 <% end %> 

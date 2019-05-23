@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :items
   resources :agreements
   resources :services
   resources :inventaries

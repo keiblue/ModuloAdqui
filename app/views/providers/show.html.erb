@@ -1,25 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Razon Social:</strong>
   <%= @provider.name %><br>
+  <strong>RUT:</strong>
+  <%= @provider.rut%>- <%= @provider.rut_dv%><br>
   <strong>Direccion:</strong>
   <%= @provider.address.calle %>#<%= @provider.address.numero %>,<%= @provider.address.comuna%>,<%= @provider.address.region %><br>
   <strong>Contrato:</strong>
   <%= @provider.agreement.code %><br>
   <strong>Ordenes:</strong>
-
-  <div class="card">
-    <% @provider.orders.each do|o| %>
-    <h5>orden id:</h5><%= o.id%>
-    <h5>nombre usuario:</h5> <%=o.user.name%> <%=o.user.last_name%>
-    <h5>fecha de envio aprox:</h5> <%= o.estimated_delivery_date%> 
-    <h5>sucursal:</h5><%= o.store.name%>
-    <h5>direcion sucursal:</h5> <%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %>   
-<% end %>
-  </div>
-
 </p>
+  <div class="card">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Usuario</th>
+            <th>rut usuario</th>
+            <th>Fecha envio Aprox</th>
+            <th>sucursal</th>
+            <th>direccion suursal</th>
+        </tr> 
+    <% @provider.orders.each do|o| %>
+      <tr>
+      <td><%= o.id%></td>
+      <td><%=o.user.name%> <%=o.user.last_name%></td> 
+      <td><%=o.user.rutito%>-<%= o.user.rutito_dv%></td>
+      <td><%= o.estimated_delivery_date%></td> 
+      <td></h5><%= o.store.name%></td>
+      <td><%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %></td> 
+      </tr>
+    <% end %>
+
+    </table>
+  </div>
 
 <%= link_to 'Edit', edit_provider_path(@provider) %> |
 <%= link_to 'Back', providers_path %>
