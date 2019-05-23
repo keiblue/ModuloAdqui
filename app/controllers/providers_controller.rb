@@ -22,6 +22,9 @@ class ProvidersController < ApplicationController
 
   # GET /providers/1/edit
   def edit
+    @address = Address.all
+    @services = Service.all
+    @contrato = Agreement.all
   end
 
   # POST /providers

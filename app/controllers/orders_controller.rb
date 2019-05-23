@@ -22,6 +22,9 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @users = User.all
+    @providers= Provider.all
+    @status = Status.all
   end
 
   # POST /orders
