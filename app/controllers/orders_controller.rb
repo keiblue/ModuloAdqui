@@ -10,6 +10,12 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf { render  template: 'orders/detalle', pdf: 'Detalle'} 
+    end
+
   end
 
   # GET /orders/new
