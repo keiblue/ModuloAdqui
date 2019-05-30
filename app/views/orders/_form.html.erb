@@ -70,7 +70,7 @@
   <tbody>
     <%  @items.each do |item|%>
     <tr>
-      <td><%= form.check_box :item_id,{},item.id %></td>
+      <td><%= check_box_tag "items[]", item.id %></td>
       <td><%= item.id %> </td>
       <td><%= item.nombre %> </td>
       <td><%= item.count %> </td>

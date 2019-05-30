@@ -32,12 +32,15 @@ class OrdersController < ApplicationController
     @users = User.all
     @providers= Provider.all
     @status = Status.all
+    @items = Item.all
+  
   end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.items= params[:items]
 
     respond_to do |format|
       if @order.save
@@ -78,10 +81,11 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+      @order.items= params[:items]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_date, :estimated_delivery_date, :delivery_date, :user_id, :provider_id,:status_id)
+      params.require(:order).permit(:order_date, :estimated_delivery_date, :delivery_date, :user_id, :provider_id,:status_id,:items)
     end
 end
