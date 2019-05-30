@@ -1,28 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Order date:</strong>
-  <%= @order.order_date %>
-  <strong>Estimated delivery date:</strong>
-  <%= @order.estimated_delivery_date %>
-    <strong>Delivery date:</strong>
-  <%= @order.delivery_date %>
-  Proveedor 
-  <%= @order.provider.name%>
-  rut Proveedor
-  <%= @order.provider.rut%>- <%= @order.provider.rut_dv%>
-</p>
+<div style="display:flex;">
+  <div class="card text-center col-3">
+    <h5>Orden De Compra</h5>
+    <p style="margin:0px;">n° <%= @order.id %></p>
+  </div>
+  <div class="col-9 text-right">
+    <p>fecha: <%= @order.order_date %></p>
+  </div>
+</div>
 
-
-<h2> Detalle Orden </h2>
-<table>
+<div class="order_info"style="padding: 10px 15px">
+  <p>Razon Social: <%= @order.provider.name%></p>
+  <p>Rut: <%= @order.provider.rut%>- <%= @order.provider.rut_dv%></p>
+  <p class="col-4">Direccion: <%= @order.provider.address.calle%> N°<%= @order.provider.address.numero%></p>
+  <p class="col-4">Comuna: <%= @order.provider.address.comuna%></p>
+  <p class="col-4">Region: <%= @order.provider.address.region%></p>
+  <p>Solicitado por: <%= @order.user.name%> <%= @order.user.last_name%></p>
+  <p>Sucursal: <%= @order.store.name %> </p>
+  <p>Estado: <%= @order.status.status%></p>
+</div>
+<div class="table col">
+  <p> Detalle Orden </p>
+  <table>
   <thead>
     <tr>
       <th>
         Descripcion 
-      </th>
-      <th>
-        Proveedor 
       </th>
       <th>
         Unidades 
@@ -31,23 +35,35 @@
         Valor unitario 
       </th>
       <th>
-        Valor total 
+        Valor total Producto
       </th>
     </tr>
   </thead>
   <tbody>
-    
+    <% @total = 0%>
     <% @order.details.each do |dt|%>
     <tr>
       <td><%= dt.item.nombre %> </td>
-      <td><%= dt.item.provider.name %> </td>
       <td><%= dt.count %> </td>
       <td>$<%= dt.item.precio %> </td>
       <td>$<%= dt.item.precio*dt.count %> </td>
+      <% @total = @total + dt.item.precio*dt.count %>
     </tr>
     <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <th>Total</th>
+      <td>$<%= @total%> </td>
+    </tr>
   </tbody>
 </table>
+</div>
+
+
 <%= link_to 'exportar a PDF', order_path(format: :pdf), target: :_blank %>
-<%= link_to 'Edit', edit_order_path(@order) %> |
+
+<% if is_admin?%>
+<%= link_to 'Edit', edit_order_path(@order) %> 
+<% end %>
 <%= link_to 'Back', orders_path %>

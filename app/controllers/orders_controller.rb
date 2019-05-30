@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
     @users = User.all
     @providers= Provider.all
     @status = Status.all
+    @items = Item.all
   end
 
   # GET /orders/1/edit

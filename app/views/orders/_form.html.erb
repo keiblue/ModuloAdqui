@@ -10,15 +10,18 @@
       </ul>
     </div>
   <% end %>
-
+<% if is_admin? || is_super? %>
   <div class="field">
-    <%= form.label :user_name %>
+    <%= form.label :user_name %>>
     <%= form.select :user_id, options_from_collection_for_select(@users, "id", "name")%>
   </div>
+<% else %>
+<%= form.hidden_field :user_id, :value => current_user.id %>
+<%end%>
 
   <div class="field">
     <%= form.label 'Proveedor' %>
-    <%= form.select :provider_id, options_from_collection_for_select(@providers, "id", "name")%>
+    <%= form.collection_select :provider_id, @providers , "id", "name"%>
   </div>
 
   <div class="field">
@@ -41,6 +44,41 @@
     <%= form.label :delivery_date %>
     <%= form.date_select :delivery_date %>
   </div>
+
+<div class="table col">
+  <p> Detalle Orden </p>
+  <table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>
+        Id
+      </th>
+      <th>
+        Descripcion 
+      </th>
+      <th>
+       Stock
+      </th>
+      <th>
+        Valor unitario 
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%  @items.each do |item|%>
+    <tr>
+      <td><%= form.check_box :item_id , item.id%></td>
+      <td><%= item.id %> </td>
+      <td><%= item.nombre %> </td>
+      <td><%= item.count %> </td>
+      <td>$<%=  item.precio %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
 
   <div class="actions">
     <%= form.submit %>
