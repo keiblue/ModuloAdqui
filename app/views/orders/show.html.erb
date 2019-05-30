@@ -3,17 +3,51 @@
 <p>
   <strong>Order date:</strong>
   <%= @order.order_date %>
-</p>
-
-<p>
   <strong>Estimated delivery date:</strong>
   <%= @order.estimated_delivery_date %>
-</p>
-
-<p>
-  <strong>Delivery date:</strong>
+    <strong>Delivery date:</strong>
   <%= @order.delivery_date %>
+  Proveedor 
+  <%= @order.provider.name%>
+  rut Proveedor
+  <%= @order.provider.rut%>- <%= @order.provider.rut_dv%>
 </p>
 
+
+<h2> Detalle Orden </h2>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Descripcion 
+      </th>
+      <th>
+        Proveedor 
+      </th>
+      <th>
+        Unidades 
+      </th>
+      <th>
+        Valor unitario 
+      </th>
+      <th>
+        Valor total 
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% @order.details.each do |dt|%>
+    <tr>
+      <td><%= dt.item.nombre %> </td>
+      <td><%= dt.item.provider.name %> </td>
+      <td><%= dt.count %> </td>
+      <td>$<%= dt.item.precio %> </td>
+      <td>$<%= dt.item.precio*dt.count %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'exportar a PDF', order_path(format: :pdf), target: :_blank %>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

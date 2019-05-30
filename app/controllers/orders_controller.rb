@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf { render  template: 'orders/detalle', pdf: 'Detalle'} 
+      format.pdf { render  template: 'orders/detalle', pdf: 'Detalle', layout: 'pdf.html'} 
     end
 
   end
