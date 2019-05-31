@@ -6,8 +6,6 @@
   <thead>
     <tr>
       <th>Order date</th>
-      <th>Estimated delivery date</th>
-      <th>Delivery date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +13,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.order_date %></td>
-        <td><%= order.estimated_delivery_date %></td>
-        <td><%= order.delivery_date %></td>
+        <td><%= order.created_at %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
