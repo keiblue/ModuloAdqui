@@ -34,6 +34,19 @@ Store.create( name:'Don Lalo', address_id:2 )
 Item.create( nombre:'item 1', precio:1000, provider_id:1 )
 Item.create( nombre:'item 2', precio:1500, provider_id:2 )
 
-Order.create( user_id:1, provider_id:1, status_id:1, store_id:1 )
-Order.create( user_id:2, provider_id:2, status_id:2, store_id:2 )
+item = Item.first()
+item2 = Item.last()
 
+Orden = Order.create( user_id:1, provider_id:1, status_id:1, store_id:1 )
+Orden.items = [item, item2]
+Orden.save_items()
+
+Orden2 = Order.create( user_id:2, provider_id:2, status_id:2, store_id:2 )
+Orden.items = [item, item2]
+Orden.save_items()
+
+# Order.create( user_id:1, provider_id:1, status_id:1, store_id:1 )
+# Order.create( user_id:2, provider_id:2, status_id:2, store_id:2 )
+
+Detail.create( count:50, item_id:1, order_id:1 )
+Detail.create( count:50, item_id:2, order_id:2 )
