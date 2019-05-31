@@ -29,22 +29,6 @@
     <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status")%>
   </div>
 
-
-  <div class="field">
-    <%= form.label :order_date %>
-    <%= form.date_select :order_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estimated_delivery_date %>
-    <%= form.date_select :estimated_delivery_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :delivery_date %>
-    <%= form.date_select :delivery_date %>
-  </div>
-
 <div class="table col">
   <p> Detalle Orden </p>
   <table>
