@@ -1,31 +1,30 @@
 <%= render 'layouts/header'%>
 
 <% is_admin?%>
-    <h2>Bienvenido <%= current_user.name%> <%= current_user.last_name%></h2> 
+    <h2> <em> Bienvenido <%= current_user.name%> <%= current_user.last_name%> </em> </h2> 
 <div class="card">
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Proveedor</th>
-                <th>Rut Proveedor</th>
-                <th>Usuario</th>
-                <th>rut usuario</th>
-                <th>Fecha solicitud</th>
-                <th>sucursal</th>
-                <th>direccion suursal</th>
-            </tr> 
-        <% @orders.each do|o| %>
-          <tr>
-          <td><%= o.id%></td>
-          <td><%=o.provider.name%></td>
-          <td><%=o.provider.rut%>-<%=o.provider.rut_dv%></td>
-          <td><%=o.user.name%> <%=o.user.last_name%></td> 
-          <td><%=o.user.rutito%>-<%= o.user.rutito_dv%></td>
-          <td><%= o.created_at%></td> 
-          <td></h5><%= o.store.name%></td>
-          <td><%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %></td> 
-          </tr>
-        <% end %>
-    
-        </table>
-      </div>
+  <table class="table table-striped">
+    <tr>
+      <th>Id</th>
+      <th>Proveedor</th>
+      <th>Rut Proveedor</th>
+      <th>Usuario</th>
+      <th>rut usuario</th>
+      <th>Fecha solicitud</th>
+      <th>sucursal</th>
+      <th>direccion suursal</th>
+    </tr> 
+    <% @orders.each do|o| %>
+    <tr>
+      <td><%= o.id%></td>
+      <td><%=o.provider.name%></td>
+      <td><%=o.provider.rut%>-<%=o.provider.rut_dv%></td>
+      <td><%=o.user.name%> <%=o.user.last_name%></td> 
+      <td><%=o.user.rutito%>-<%= o.user.rutito_dv%></td>
+      <td><%= o.created_at%></td> 
+      <td></h5><%= o.store.name%></td>
+      <td><%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %></td> 
+      </tr>
+    <% end %>
+  </table>
+</div>

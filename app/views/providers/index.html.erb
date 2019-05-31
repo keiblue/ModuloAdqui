@@ -1,26 +1,33 @@
 <%= render 'layouts/header'%>
-<h1>Providers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @providers.each do |provider| %>
+<h1>Proveedores</h1>
+<div class="card">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= provider.name %></td>
-        <td><%= link_to 'Show', provider %></td>
-        <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
-        <td><%= link_to 'Destroy', provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nombre</th>
+        <th>Rut</th>
+        <th>Servicio</th>
+        <th></th>
+        <th colspan="2">Opciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @providers.each do |provider| %>
+        <tr>
+          <td><%= provider.name %></td>
+          <td><%= provider.rut %></td>
+          <td><%= provider.service.name %></td>
+          <td><%= link_to 'Ver', provider %></td>
+          <td><%= link_to 'Editar', edit_provider_path(provider) %></td>
+          <td><%= link_to 'Eliminar', provider, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Provider', new_provider_path %>
+<%= link_to 'Nuevo Proveedor', new_provider_path %>
