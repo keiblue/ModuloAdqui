@@ -23,4 +23,7 @@ module ApplicationHelper
           @emple = true
         end
       end
+
+      def validate_rut 
+      end
 end

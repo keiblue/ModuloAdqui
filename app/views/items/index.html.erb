@@ -10,7 +10,6 @@
     <tr>
       <th>Nombre</th>
       <th>Precio</th>
-      <th>Count</th>
       <th>proveedor</th>
       <th colspan="2"></th>
     </tr>
@@ -21,7 +20,6 @@
       <tr>
         <td><%= item.nombre %></td>
         <td><%= item.precio %></td>
-        <td><%= item.count %></td>
         <td><%= item.provider.name%></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>

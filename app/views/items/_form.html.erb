@@ -20,11 +20,6 @@
     <%= form.label :precio %>
     <%= form.number_field :precio %>
   </div>
-
-  <div class="field">
-    <%= form.label :count %>
-    <%= form.number_field :count %>
-  </div>
   <div class="field">
       <%= form.label 'Proveedor' %>
       <%= form.select :provider_id, options_from_collection_for_select(@provider, "id", "name")%>

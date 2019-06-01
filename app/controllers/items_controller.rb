@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action  :authenticate_user!, except: [:show, :index]
-  before_action :is_admin
+
 
 
   # GET /items
@@ -76,17 +75,5 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:nombre, :precio, :count, :provider_id)
     end
 
-    def is_admin
-      if user_signed_in? && current_user.role.role_name == 'Empleado'
-        puts 'pico pal que lee'
-        puts 'pico pal que lee'
-        puts 'pico pal que lee'
-        puts 'pico pal que lee'
-        puts 'pico pal que lee'
-        puts 'pico pal que lee'
-        puts 'pico pal que lee'
-        
-      end
-    end
     
 end
