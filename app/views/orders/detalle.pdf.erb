@@ -19,6 +19,7 @@
     <p>Solicitado por: <%= @order.user.name%> <%= @order.user.last_name%></p>
     <p>Sucursal: <%= @order.store.name %> </p>
     <p>Estado: <%= @order.status.status%></p>
+    <p>Pago: <%= @order.patment.method%></p>
   </div>
   <div class="table col">
     <p> Detalle Orden </p>
