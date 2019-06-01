@@ -1,28 +1,92 @@
 <p id="notice"><%= notice %></p>
 
-<div style="display:flex;">
-  <div class="card text-center col-3">
-    <h5>Orden De Compra</h5>
-    <p style="margin:0px;">n° <%= @order.id %></p>
-  </div>
-  <div class="col-9 text-right">
-    <p>fecha: <%= @order.order_date %></p>
-  </div>
+<div class="card">
+
+    <div class="d-flex justify-content-center">
+      <div class="card">
+        <h5>Orden De Compra</h5>
+        <div class="text-center">
+          <p style="margin:0px;">n° <%= @order.id %></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <p>fecha: <%= @order.created_at %></p>
+    </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <ins>[Datos Proveedor]</ins>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Razon Social: <em><%= @order.provider.name%></em>
+      </div>
+      <div class="col">
+        Rut: <em><%= @order.provider.rut%>- <%= @order.provider.rut_dv%></em>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Direccion: <em><%= @order.provider.address.calle%> N°<%= @order.provider.address.numero%></em>
+      </div>
+      <div class="col">
+        Comuna: <em><%= @order.provider.address.comuna%></em>
+      </div>
+      <div class="col">
+        Region: <em><%= @order.provider.address.region%></em>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <ins>[Datos Solicitud]</ins>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Solicitado por: <em><%= @order.user.name%> <%= @order.user.last_name%></em>
+      </div>
+      <div class="col">
+        Sucursal: <em><%= @order.store.name %></em>
+      </div>
+      <div class="col"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <ins>[Datos Orden]</ins>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col">
+        Items Ordenados:
+      </div>
+      <div class="col">
+        Estado: <%= @order.status.status%>
+      </div>
+      <div class="col"></div>
+    </div>
 </div>
 
-<div class="order_info"style="padding: 10px 15px">
-  <p>Razon Social: <%= @order.provider.name%></p>
-  <p>Rut: <%= @order.provider.rut%>- <%= @order.provider.rut_dv%></p>
-  <p class="col-4">Direccion: <%= @order.provider.address.calle%> N°<%= @order.provider.address.numero%></p>
-  <p class="col-4">Comuna: <%= @order.provider.address.comuna%></p>
-  <p class="col-4">Region: <%= @order.provider.address.region%></p>
-  <p>Solicitado por: <%= @order.user.name%> <%= @order.user.last_name%></p>
-  <p>Sucursal: <%= @order.store.name %> </p>
-  <p>Estado: <%= @order.status.status%></p>
-</div>
-<div class="table col">
-  <p> Detalle Orden </p>
-  <table>
+  <!--
+  <div class="order_info"style="padding: 10px 15px">
+    <p>Razon Social: <%= @order.provider.name%></p>
+    <p>Rut: <%= @order.provider.rut%>- <%= @order.provider.rut_dv%></p>
+    <p class="col-4">Direccion: <%= @order.provider.address.calle%> N°<%= @order.provider.address.numero%></p>
+    <p class="col-4">Comuna: <%= @order.provider.address.comuna%></p>
+    <p class="col-4">Region: <%= @order.provider.address.region%></p>
+    <p>Solicitado por: <%= @order.user.name%> <%= @order.user.last_name%></p>
+    <p>Sucursal: <%= @order.store.name %> </p>
+    <p>Estado: <%= @order.status.status%></p>
+  </div>
+  -->
+ 
+  <table class="table">
   <thead>
     <tr>
       <th>

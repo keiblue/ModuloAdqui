@@ -1,31 +1,30 @@
 <%= render 'layouts/header'%>
 
-<h1>Orders</h1>
+<h1>Ordenes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Order date</th>
-      <th>Estimated delivery date</th>
-      <th>Delivery date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
+<div class="card">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= order.order_date %></td>
-        <td><%= order.estimated_delivery_date %></td>
-        <td><%= order.delivery_date %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Fecha Orden</th>
+        <th></th>
+        <th colspan="2">Opciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.created_at %></td>
+          <td><%= link_to 'Ver', order %></td>
+          <td><%= link_to 'Editar', edit_order_path(order) %></td>
+          <td><%= link_to 'Eliminar', order, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to 'Nueva Orden', new_order_path %>
