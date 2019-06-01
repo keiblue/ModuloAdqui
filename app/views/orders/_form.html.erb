@@ -29,6 +29,11 @@
     <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status")%>
   </div>
 
+   <div class="field">
+    <%= form.label 'Tipo De pago' %>
+    <%= form.select :patment_id, options_from_collection_for_select(@payments, "id", "method")%>
+  </div>
+
 <div class="table col">
   <p> Detalle Orden </p>
   <table>
