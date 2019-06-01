@@ -5,7 +5,7 @@ class Order < ApplicationRecord
     belongs_to :store
     has_many :details
     has_many :items , through: :details
-    has_one :payment
+    belongs_to :payment
 
     after_create :save_items
     after_update :update_items

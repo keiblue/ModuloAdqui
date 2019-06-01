@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  
 
   # GET /orders
   # GET /orders.json
@@ -11,7 +10,6 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-
     respond_to do |format|
       format.html
       format.json
@@ -27,6 +25,7 @@ class OrdersController < ApplicationController
     @providers= Provider.all
     @status = Status.all
     @items = Item.all
+    @payments = Payment.all
   end
 
   # GET /orders/1/edit
@@ -35,6 +34,7 @@ class OrdersController < ApplicationController
     @providers= Provider.all
     @status = Status.all
     @items = Item.all
+    @payments = Payment.all
   
   end
 
@@ -88,6 +88,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_date, :estimated_delivery_date, :delivery_date, :user_id, :provider_id,:status_id,:items)
+      params.require(:order).permit(:order_date, :estimated_delivery_date, :delivery_date, :user_id, :provider_id,:status_id,:items, :payment_id)
     end
 end
