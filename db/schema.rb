@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_185130) do
+ActiveRecord::Schema.define(version: 2019_06_01_023930) do
 
   create_table "addresses", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "region"
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(version: 2019_05_31_185130) do
     t.index ["status_id"], name: "index_orders_on_status_id"
     t.index ["store_id"], name: "index_orders_on_store_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "method"
+    t.integer "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "providers", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
