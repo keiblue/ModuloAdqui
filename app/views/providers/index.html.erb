@@ -1,7 +1,9 @@
 <%= render 'layouts/header'%>
 <h1>Proveedores</h1>
-<table>
-  <thead>
+
+<div class="card">
+  <table class="table table-striped">
+    <thead>
       <tr>
         <th>Nombre</th>
         <th>Rut</th>
@@ -11,7 +13,7 @@
       </tr>
     </thead>
 
-    <tbody>
+  <tbody>
       <% @providers.each do |provider| %>
         <tr>
           <td><%= provider.name %></td>
