@@ -1,16 +1,14 @@
 <%= render 'layouts/header'%>
+<<<<<<< HEAD
+<h1>Proveedores</h1>
+=======
+>>>>>>> 536e7598cea165ea3acfbdd6d213eac9dc3de502
+
 <h1>Proveedores</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @providers.each do |provider| %>
+<div class="card">
+  <table class="table table-striped">
+    <thead>
       <tr>
         <th>Nombre</th>
         <th>Rut</th>
@@ -21,7 +19,7 @@
       <% end %>
     </thead>
 
-    <tbody>
+  <tbody>
       <% @providers.each do |provider| %>
         <tr>
           <td><%= provider.name %></td>
