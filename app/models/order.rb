@@ -16,7 +16,7 @@ class Order < ApplicationRecord
 
     def save_items
         @items.each do |item_id|
-            Detail.create(order_id: self.id, item_id: item_id , count: 3 )
+            Detail.create(order_id: self.id, item_id: item_id , count: 3)
         end
     end
 
