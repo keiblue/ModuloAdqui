@@ -1,2 +1,0 @@
-class Login < ApplicationRecord
-end

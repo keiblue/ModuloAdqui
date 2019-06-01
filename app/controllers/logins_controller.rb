@@ -4,7 +4,7 @@ class LoginsController < ApplicationController
   # GET /logins
   # GET /logins.json
   def index
-    @logins = Login.all
+    @logins = User.all
   end
 
   # GET /logins/1
@@ -14,7 +14,6 @@ class LoginsController < ApplicationController
 
   # GET /logins/new
   def new
-    @login = Login.new
   end
 
   # GET /logins/1/edit
