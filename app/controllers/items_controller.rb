@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action  :authenticate_user!, except: [:show, :index]
   before_action :is_admin
 
 
