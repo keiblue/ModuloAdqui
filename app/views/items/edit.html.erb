@@ -2,5 +2,11 @@
 
 <%= render 'form', item: @item %>
 
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
+<% if @provider_param %>
+    <%= link_to 'Ver', item_provider_path(:id => @item.id, :provider_id => @provider.id ) %> |
+    <%= link_to 'Volver', items_provider_path(:provider_id => @provider.id) %>|
+    <%= link_to 'Volver(Proveedor)', @provider %>
+<% else %>
+    <%= link_to 'Show', @item %> |
+    <%= link_to 'Volver', items_path %>
+<% end %>

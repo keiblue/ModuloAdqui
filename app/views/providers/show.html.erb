@@ -18,6 +18,9 @@
         <%= @provider.agreement.code %><br>
         <strong>Servicio:</strong> 
         <%= @provider.service.name %><br>
+        <strong>Items:</strong> 
+        <%= link_to 'items del proveedor', items_provider_path(:provider_id => @provider.id) %>|
+        <%= link_to 'nuevo item', new_item_provider_path(:provider_id => @provider.id) %><br>
       </li>
       <li class="list-group-item">
         <strong>Ordenes:</strong>

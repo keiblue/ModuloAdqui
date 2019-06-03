@@ -21,14 +21,15 @@
     <%= form.number_field :precio %>
   </div>
 
+  <% if @provider_param %>
   <div class="field">
-    <%= form.label :count %>
-    <%= form.number_field :count %>
+    <%= form.label 'Proveedor' %>
+    <%= form.select :provider_id, options_for_select([[@provider.name, @provider.id]])%>
   </div>
-  <div class="field">
-      <%= form.label 'Proveedor' %>
-      <%= form.select :provider_id, options_from_collection_for_select(@provider, "id", "name")%>
-    </div>
+  <% else %>
+    <%= form.label 'Proveedor' %>
+    <%= form.select :provider_id, options_from_collection_for_select(@providers,'id', 'name')%>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

@@ -1,0 +1,6 @@
+<% if !is_admin?%>
+<h1>Nuevo Usuario</h1>
+
+<%= render 'form', user: @user %>
+
+<%= link_to 'Back', accounts_path %>

@@ -1,3 +1,52 @@
 body {
-    background: #ddd333;
-}
+    padding: 15px;
+  }
+  
+  #top {
+    display: block;
+    overflow: auto;
+    width: 15rem;
+    margin: auto;
+    border: 3px solid #757575;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  #articulos {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #articulos td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  #articulos tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+  
+  #datos {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #datos td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-family: Monospace;
+  }
+  
+  #datos td * {
+      font-family: Monospace;
+  }
+  
+  #datos .title * {
+      font-size: 18px;
+      font-family: Monospace;
+  }
