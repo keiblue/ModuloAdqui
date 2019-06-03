@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to items_path(:provider_id => item_params[:provider_id]), notice: 'Item was successfully created.' }
+        format.html { redirect_to providers_path(:id => id[:provider_id]), notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -63,10 +63,11 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    id = @item
     @item.destroy
     respond_to do |format|
       if @provider_param
-        format.html { redirect_to items_path(:provider_id => item_params[:provider_id]), notice: 'Item was successfully destroyed.' }
+        format.html { redirect_to providers_path(:id => id[:provider_id]), notice: 'Item was successfully destroyed.' }
         format.json { head :no_content }
       else
         format.html { redirect_to items_path, notice: 'Item was successfully destroyed.' }
@@ -74,7 +75,7 @@ class ItemsController < ApplicationController
       end
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
