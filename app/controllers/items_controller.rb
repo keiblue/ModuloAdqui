@@ -5,7 +5,11 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Provider.find(params[:provider_id]).items
+    if @provider_param
+      @items = Provider.find(params[:provider_id]).items
+    else
+      @items = Item.all
+    end
   end
 
   # GET /items/1
@@ -16,6 +20,9 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    if !@provider_param
+      @providers = Provider.all
+    end
   end
 
   # GET /items/1/edit
@@ -57,8 +64,13 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_path(:provider_id => item_params[:provider_id]), notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
+      if @provider_param
+        format.html { redirect_to items_path(:provider_id => item_params[:provider_id]), notice: 'Item was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to items_path, notice: 'Item was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -70,10 +82,16 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:nombre, :precio, :provider_id)
+      params.require(:item).permit(:id, :nombre, :precio, :provider_id)
     end
 
     def set_provider
-      @provider = Provider.find(params[:provider_id])
+      if params[:provider_id].present?
+        @items = Provider.find(params[:provider_id]).items
+        @provider = Provider.find(params[:provider_id])
+        @provider_param = true
+      else
+        @provider_param = false
+      end
     end
 end

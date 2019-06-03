@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <%= render 'layouts/header'%>
-<h1>Items del Proveedor</h1>
+<h1>Items</h1>
 
 <div class="card">
   <table class="table table-striped">
@@ -17,10 +17,18 @@
         <tr>
           <td><%= item.nombre %></td>
           <td><%= item.precio %></td>
-          <td><%= link_to 'Ver', item_path(:id => item.id, :provider_id => @provider.id) %></td>
-          <% if @admin || @super %>
-          <td><%= link_to 'Editar', edit_item_path(:id => item.id, :provider_id => @provider.id) %></td>
-          <td><%= link_to 'Eliminar', item_path(:id => item.id, :provider_id => @provider.id), method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+          <% if @provider_param %>
+            <td><%= link_to 'Ver', item_provider_path(:id => item.id, :provider_id => @provider.id) %></td>
+            <% if @admin || @super %>
+            <td><%= link_to 'Editar', edit_item_provider_path(:id => item.id, :provider_id => @provider.id) %></td>
+            <td><%= link_to 'Eliminar', delete_item_provider_path(:id => item.id, :provider_id => @provider.id), method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+            <% end %>
+          <% else %>
+            <td><%= link_to 'Ver', item_path(:id => item.id) %></td>
+            <% if @admin || @super %>
+            <td><%= link_to 'Editar', edit_item_path(item) %></td>
+            <td><%= link_to 'Eliminar', item_path(item), method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>
@@ -30,7 +38,14 @@
 
 <br>
 
-<% if @admin || @super %>
-<%= link_to 'Nuevo Item', new_item_path(:provider_id => @provider.id) %>
+<% if @provider_param %>
+  <% if @admin || @super %>
+  <%= link_to 'Nuevo Item', new_item_provider_path(:provider_id => @provider.id) %>
+  <% end %>
+  <%= link_to 'Volver', provider_path(@provider) %>
+<% else %>
+  <% if @admin || @super %>
+  <%= link_to 'Nuevo Item', new_item_path %>
+  <% end %>
+  <%= link_to 'Volver', items_path %>
 <% end %>
-<%= link_to 'Volver', provider_path(@provider) %>
