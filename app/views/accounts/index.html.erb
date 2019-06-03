@@ -1,0 +1,38 @@
+<%= render 'layouts/header'%>
+<p id="notice"><%= notice %></p>
+<h1>Usuarios</h1>
+
+
+<div class="card">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Rut</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Rol</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.rutito %>-<%= user.rutito_dv %></td>
+          <td><%= user.name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.role.role_name %></td>
+          <td><%= link_to 'Ver', user %></td>
+          <td><%= link_to 'Editar', edit_user_path(user) %></td>
+          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'Nuevo Usuario', new_user_path %>
