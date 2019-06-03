@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_provider, only: [:index, :edit, :update, :new, :show]
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Provider.find(params[:provider_id]).items
   end
 
   # GET /items/1
@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
-    @provider = Provider.all
   end
 
   # GET /items/1/edit
@@ -30,7 +29,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to items_path(:provider_id => item_params[:provider_id]), notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -58,7 +57,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to items_path(:provider_id => item_params[:provider_id]), notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,7 +70,10 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:nombre, :precio, :count, :provider_id)
+      params.require(:item).permit(:nombre, :precio, :provider_id)
     end
-    
+
+    def set_provider
+      @provider = Provider.find(params[:provider_id])
+    end
 end

@@ -11,14 +11,9 @@
 </p>
 
 <p>
-  <strong>Count:</strong>
-  <%= @item.count %>
-</p>
-
-<p>
     <strong>Proveedor:</strong>
     <%= @item.provider.name %>
   </p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Back', items_path(:provider_id => @provider.id) %>

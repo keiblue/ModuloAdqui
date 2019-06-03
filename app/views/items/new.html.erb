@@ -2,4 +2,5 @@
 
 <%= render 'form', item: @item %>
 
-<%= link_to 'Back', items_path %>
+<%= link_to 'Volver', items_path(:provider_id => @provider.id) %>
+<%= link_to 'Volver(Proveedor)', @provider %>
