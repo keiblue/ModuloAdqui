@@ -1,64 +1,90 @@
+  <div style="position: absolute; right: 10px;">
+    <p style="font-size:0.8rem">Fecha <%= Date.today.to_s %></p>
+    <p style="font-size:0.8rem">Hora <%= Time.new.hour %>:<%= Time.new.min %></p>
+  </div>
 
 
-    <h1> Detalle Orden  </h1>
-    <div style="display:flex;">
-    <div class="card text-center col-3">
-      <h5>Orden De Compra</h5>
+  <div id="top">
+    <h5>Orden De Compra</h5>
       <p style="margin:0px;">n° <%= @order.id %></p>
-    </div>
-    <div class="col-9 text-right">
-      <p>fecha: <%= @order.created_at %></p>
-    </div>
   </div>
-  
-  <div class="order_info"style="padding: 10px 15px">
-    <p>Razon Social: <%= @order.provider.name%></p>
-    <p>Rut: <%= @order.provider.rut%>- <%= @order.provider.rut_dv%></p>
-    <p class="col-4">Direccion: <%= @order.provider.address.calle%> N°<%= @order.provider.address.numero%></p>
-    <p class="col-4">Comuna: <%= @order.provider.address.comuna%></p>
-    <p class="col-4">Region: <%= @order.provider.address.region%></p>
-    <p>Solicitado por: <%= @order.user.name%> <%= @order.user.last_name%></p>
-    <p>Sucursal: <%= @order.store.name %> </p>
-    <p>Estado: <%= @order.status.status%></p>
-    <p>Pago: <%= @order.payment.method%></p>
-  </div>
-  <div class="table col">
-    <p> Detalle Orden </p>
-    <table>
-    <thead>
-      <tr>
-        <th>
-          Descripcion 
-        </th>
-        <th>
-          Unidades 
-        </th>
-        <th>
-          Valor unitario 
-        </th>
-        <th>
-          Valor total Producto
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @total = 0 %>
-      <% @order.details.each do |dt| %>
-      <tr>
-        <td><%= dt.item.nombre %> </td>
-        <td><%= dt.count %> </td>
-        <td>$<%= dt.item.precio %> </td>
-        <td>$<%= dt.item.precio*dt.count %> </td>
-        <% @total = @total + dt.item.precio*dt.count %>
-      </tr>
-      <% end %>
-      <tr>
-        <td></td>
-        <td></td>
-        <th>Total</th>
-        <td>$<%= @total%> </td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  
+
+<br>
+<table id="datos">
+    <tr class="title">
+        <td colspan="6">Datos Proveedor</td>
+    </tr>
+    <tr>
+        <td>Razon Social</td>
+        <td><em><%= @order.provider.name%></em></td>
+        <td>Rut</td>
+        <td colspan="3"><em><%= @order.provider.rut%>- <%= @order.provider.rut_dv%></em></td>
+    </tr>
+    <tr>
+        <td>Direccion</td>
+        <td><em><%= @order.provider.address.calle%> N°<%= @order.provider.address.numero%></em></td>
+        <td>Comuna</td>
+        <td><em><%= @order.provider.address.comuna%></em></td>
+        <td>Region</td>
+        <td><em><%= @order.provider.address.region%></em></td>
+    </tr>
+    <tr class="title">
+        <td colspan="6">Datos Solicitud</td>
+    </tr>
+    <tr>
+        <td>Solicitado por</td>
+        <td><em><%= @order.user.name%> <%= @order.user.last_name%></em></td>
+        <td>Sucursal</td>
+        <td><em><%= @order.store.name %></em></td>
+        <td>Fecha Solicitud</td>
+        <td><%= @order.created_at.year %>-<%= @order.created_at.month %>-<%= @order.created_at.day %> <%= @order.created_at.hour %>:<%= @order.created_at.min %></td>
+    </tr>
+    <tr class="title">
+        <td colspan="6">Datos Orden</td>
+    </tr>
+    <tr>
+        <td>Estado</td>
+        <td><em><%= @order.status.status%></em></td>
+        <td>Pago</td>
+        <td colspan="3"><em><%= @order.payment.method%></em></td>
+    </tr>
+</table>
+
+<br>
+
+<table id="articulos">
+          <thead>
+            <tr>
+              <th>
+                Descripcion 
+              </th>
+              <th>
+                Unidades 
+              </th>
+              <th>
+                Valor unitario 
+              </th>
+              <th>
+                Valor total Producto
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @total = 0%>
+            <% @order.details.each do |dt|%>
+            <tr>
+              <td><%= dt.item.nombre %> </td>
+              <td><%= dt.count %> </td>
+              <td>$<%= dt.item.precio %> </td>
+              <td>$<%= dt.item.precio*dt.count %> </td>
+              <% @total = @total + dt.item.precio*dt.count %>
+            </tr>
+            <% end %>
+            <tr>
+              <td></td>
+              <td></td>
+              <th>Total</th>
+              <td>$<%= @total%> </td>
+            </tr>
+          </tbody>
+        </table>
