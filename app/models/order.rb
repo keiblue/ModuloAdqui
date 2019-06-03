@@ -6,10 +6,12 @@ class Order < ApplicationRecord
     has_many :details
     has_many :items , through: :details
     belongs_to :payment
+    
+    
 
     after_create :save_items
     after_update :update_items
-
+    after_destroy :destroy_detail
     #custom setter
     def items=(items)
         @items = items
@@ -31,12 +33,16 @@ class Order < ApplicationRecord
         end
 
     end
+    
+    def destroy_detail
+        detail = Detail.where(order_id: self.id)
+        detail.each do|det|
+            det.destroy
+        end
+    end
 
     def update_items
-        items = Detail.where(order_id: self.id)
-        items.each do |i|
-            i.destroy
-        end 
+        self.destroy_detail
         self.save_items
     end
 end
