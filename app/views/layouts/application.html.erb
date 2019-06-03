@@ -14,7 +14,7 @@
     <% if user_signed_in? %>
       <%= render 'layouts/header'%>
     <%end%>
-    
+     <% user_role? %>
     <%= yield %>
   </body>
 </html>
