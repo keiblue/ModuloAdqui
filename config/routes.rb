@@ -25,8 +25,10 @@ Rails.application.routes.draw do
   patch 'accounts/:id', action: :update, controller: 'accounts'
   delete 'accounts/:id', action: :destroy, controller: 'accounts'
 
-  get 'providers/:id/items', action: :items, controller: 'providers' , as: 'provider_items'
-  get 'providers/:id/items/new', action: :new_item, controller: 'providers' , as: 'provider_new_item'
-  post 'providers/:id/items', action: :create_item, controller: 'providers'
-  delete 'providers/:id/items', action: :destroy_item, controller: 'providers', as: 'providers_item_delete'
+  get 'provider/items/:provider_id', action: :index, controller: 'items', as:'items_provider'
+  get 'provider/items/new/:provider_id', action: :new, controller: 'items', as:'new_item_provider'
+  get 'provider/items/:id/:provider_id', action: :show, controller: 'items', as:'item_provider'
+  get 'provider/items/:id/edit/:provider_id', action: :edit, controller: 'items', as:'edit_item_provider'
+  delete 'provider/items/:id/:provider_id', action: :destroy, controller: 'items', as: 'delete_item_provider'
+
 end
