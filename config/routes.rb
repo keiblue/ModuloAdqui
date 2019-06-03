@@ -26,5 +26,7 @@ Rails.application.routes.draw do
 
   get 'providers/:id/items', action: :items, controller: 'providers' , as: 'provider_items'
   get 'providers/:id/items/new', action: :new_item, controller: 'providers' , as: 'provider_new_item'
+  post 'providers/:id/items', action: :create_item, controller: 'providers'
+  delete 'providers/:id/items', action: :destroy_item, controller: 'providers', as: 'providers_item_delete'
 end
 
