@@ -1,4 +1,4 @@
-<% if @admin%>
+<% if session[:admin]%>
 <h1>Editar Usuario</h1>
 
 <%= render 'form', user: @user %>
@@ -6,4 +6,3 @@
 <%= link_to 'Show', @user %> |
 <%end%>
 <%= link_to 'Back', users_path %>
-<% end %>

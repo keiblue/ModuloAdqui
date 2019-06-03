@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-<% if @admin || @super %>
+<% if session[:admin] || session[:super] %>
   <div class="field">
     <%= form.label :user_name %>>
     <%= form.select :user_id, options_from_collection_for_select(@users, "id", "name")%>
