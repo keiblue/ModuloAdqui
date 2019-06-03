@@ -1,6 +1,4 @@
-<%= render 'layouts/header'%>
 
-<p id="notice"><%= notice %></p>
 
 <div class="card">
 
@@ -18,8 +16,6 @@
         <%= @provider.agreement.code %><br>
         <strong>Servicio:</strong> 
         <%= @provider.service.name %><br>
-        <strong>Items:</strong> 
-        <%= link_to 'items del proveedor', provider_items_path %><br>
       </li>
       <li class="list-group-item">
         <strong>Ordenes:</strong>

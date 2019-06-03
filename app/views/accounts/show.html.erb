@@ -1,4 +1,5 @@
-<% if is_admin?%>
+
+<% if @admin%>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -27,4 +28,5 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<%end%>
 <%= link_to 'Back', users_path %>
