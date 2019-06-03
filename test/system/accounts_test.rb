@@ -14,14 +14,13 @@ class AccountsTest < ApplicationSystemTestCase
     visit accounts_url
     click_on "New Account"
 
-    fill_in "1", with: @account.1
     fill_in "Email", with: @account.email
     fill_in "Last name", with: @account.last_name
     fill_in "Name", with: @account.name
     fill_in "Password", with: @account.password
-    fill_in "Role", with: @account.role
-    fill_in "Rut", with: @account.rut
-    fill_in "Rut dv", with: @account.rut_dv
+    fill_in "Role", with: @account.role_id
+    fill_in "Rutito", with: @account.rutito
+    fill_in "Rutito dv", with: @account.rutito_dv
     click_on "Create Account"
 
     assert_text "Account was successfully created"
@@ -32,14 +31,13 @@ class AccountsTest < ApplicationSystemTestCase
     visit accounts_url
     click_on "Edit", match: :first
 
-    fill_in "1", with: @account.1
     fill_in "Email", with: @account.email
     fill_in "Last name", with: @account.last_name
     fill_in "Name", with: @account.name
     fill_in "Password", with: @account.password
-    fill_in "Role", with: @account.role
-    fill_in "Rut", with: @account.rut
-    fill_in "Rut dv", with: @account.rut_dv
+    fill_in "Role", with: @account.role_id
+    fill_in "Rutito", with: @account.rutito
+    fill_in "Rutito dv", with: @account.rutito_dv
     click_on "Update Account"
 
     assert_text "Account was successfully updated"

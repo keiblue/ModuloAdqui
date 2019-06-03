@@ -1,6 +1,7 @@
-<h1>Editing Account</h1>
+<% if is_admin?%>
+<h1>Editar Usuario</h1>
 
-<%= render 'form', account: @account %>
+<%= render 'form', user: @user %>
 
-<%= link_to 'Show', @account %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>

@@ -3,19 +3,17 @@
 one:
   email: MyString
   password: MyString
-  rut: 
+  rutito: 
+  rutito_dv: MyString
   name: MyString
   last_name: MyString
-  role: 
-  rut_dv: MyString
-  1: MyString
+  role_id: 
 
 two:
   email: MyString
   password: MyString
-  rut: 
+  rutito: 
+  rutito_dv: MyString
   name: MyString
   last_name: MyString
-  role: 
-  rut_dv: MyString
-  1: MyString
+  role_id: 

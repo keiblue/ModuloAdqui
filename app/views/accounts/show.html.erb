@@ -1,44 +1,30 @@
+<% if is_admin?%>
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Email:</strong>
-  <%= @account.email %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @account.password %>
+  <%= @user.email %>
 </p>
 
 <p>
   <strong>Rut:</strong>
-  <%= @account.rut %>
+  <%= @user.rutito %>-<%= @user.rutito_dv %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @account.name %>
+  <%= @user.name %>
 </p>
 
 <p>
   <strong>Last name:</strong>
-  <%= @account.last_name %>
+  <%= @user.last_name %>
 </p>
 
 <p>
   <strong>Role:</strong>
-  <%= @account.role %>
+  <%= @user.role.role_name %>
 </p>
 
-<p>
-  <strong>Rut dv:</strong>
-  <%= @account.rut_dv %>
-</p>
-
-<p>
-  <strong>1:</strong>
-  <%= @account.1 %>
-</p>
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
