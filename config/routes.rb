@@ -25,4 +25,3 @@ Rails.application.routes.draw do
   delete 'accounts/:id', action: :destroy, controller: 'accounts'
 
 end
-

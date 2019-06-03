@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
 
+
   # GET /items
   # GET /items.json
   def index
@@ -73,5 +74,9 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:nombre, :precio, :count, :provider_id)
     end
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5020422367319c449b18a5729a50208ceab49f08
     
 end

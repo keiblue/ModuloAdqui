@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.items= params[:items]
+    @order.items_counts = params[:counts]
 
     respond_to do |format|
       if @order.save
@@ -84,10 +85,11 @@ class OrdersController < ApplicationController
     def set_order
       @order = Order.find(params[:id])
       @order.items= params[:items]
+      @order.items_counts = params[:counts]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_date, :estimated_delivery_date, :delivery_date, :user_id, :provider_id,:status_id,:items, :payment_id)
+      params.require(:order).permit(:order_date, :estimated_delivery_date, :delivery_date, :user_id, :provider_id,:status_id,:items,:counts, :payment_id)
     end
 end
