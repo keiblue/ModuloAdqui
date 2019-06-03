@@ -7,6 +7,18 @@ class ProvidersController < ApplicationController
     @providers = Provider.all
   end
 
+  def items
+    @items = Provider.find(params[:id]).items
+  end
+
+  def new_item
+  end
+
+  def create_item
+    @provider = Provider.find(params[:id])
+    
+  end
+
   # GET /providers/1
   # GET /providers/1.json
   def show
