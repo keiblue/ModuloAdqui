@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :providers
   resources :orders
   resources :roles
+  #resources :accounts
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -31,4 +32,3 @@ Rails.application.routes.draw do
   delete 'provider/items/:id/:provider_id', action: :destroy, controller: 'items', as: 'delete_item_provider'
 
 end
-

@@ -1,5 +1,4 @@
-<%= render 'layouts/header'%>
-<p id="notice"><%= notice %></p>
+
 
   <div style="position: absolute; right: 10px;">
     <p style="font-size:0.8rem">Fecha <%= Date.today.to_s %></p>
@@ -93,7 +92,7 @@
 
 <%= link_to 'exportar a PDF', order_path(format: :pdf), target: :_blank %>
 
-<% if @admin %>
+<% if session[:admin] %>
 <%= link_to 'Editar', edit_order_path(@order) %> 
 <% end %>
 <%= link_to 'Volver', orders_path %>

@@ -1,9 +1,6 @@
-<%= render 'layouts/header'%>
-<% if @admin %>
-<p id="notice"><%= notice %></p>
 <h1>Usuarios</h1>
 
-
+<% if session[:admin] %>
 <div class="card">
   <table class="table table-striped">
     <thead>
@@ -37,4 +34,5 @@
 <br>
 
 <%= link_to 'Nuevo Usuario', new_user_path %>
-<% end %>
+
+<%end%>

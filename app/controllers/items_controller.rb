@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_provider, only: [:index, :edit, :update, :new, :show]
 
+
   # GET /items
   # GET /items.json
   def index
@@ -95,3 +96,4 @@ class ItemsController < ApplicationController
       end
     end
 end
+
