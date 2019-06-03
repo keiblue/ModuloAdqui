@@ -6,7 +6,6 @@
               <li><%= link_to 'Inicio' , root_path, class:"btn" %></li> 
               <li><%= link_to 'Proveedores' , providers_path, class:"btn" %></li> 
               <li><%= link_to 'Ordenes' , orders_path, class:"btn" %></li>
-              <li><%= link_to 'Items' , items_path, class:"btn" %></li>
               <% if session[:admin] %>
               <li><%= link_to 'Usuarios' , users_path, class:"btn" %></li>
               <% end %>
