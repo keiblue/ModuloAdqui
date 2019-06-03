@@ -36,6 +36,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     respond_to do |format|
+      id = @item
       if @item.save
         format.html { redirect_to providers_path(:id => id[:provider_id]), notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
