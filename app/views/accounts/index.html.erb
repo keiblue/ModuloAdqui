@@ -1,5 +1,6 @@
 <h1>Usuarios</h1>
-<% if @admin %>
+
+<% if session[:admin] %>
 <div class="card">
   <table class="table table-striped">
     <thead>
@@ -33,4 +34,8 @@
 <br>
 
 <%= link_to 'Nuevo Usuario', new_user_path %>
+<<<<<<< HEAD
 <% end %>
+=======
+<%end%>
+>>>>>>> 9d2adc925d7a37995bff015730a4147c361d5190
