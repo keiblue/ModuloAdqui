@@ -13,12 +13,23 @@ class Order < ApplicationRecord
     #custom setter
     def items=(items)
         @items = items
+        puts @items
+    end
+    def items_counts=(counts)
+        @counts = counts  
+        puts @counts
     end
 
     def save_items
-        @items.each do |item_id|
-            Detail.create(order_id: self.id, item_id: item_id , count: 3 )
+        unless @items.nil?
+            count = @counts.reject(&:blank?)
+            @items.each_with_index do |item_id, index|
+                unless item_id == 0 
+                Detail.create(order_id: self.id, item_id: item_id ,count: count[index] )
+                end
+            end            
         end
+
     end
 
     def update_items
