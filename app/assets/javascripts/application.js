@@ -18,12 +18,13 @@
 //= require bootstrap
 //= require_tree .
 
-$(document).ready(function() {
+$(document).on('turbolinks:load',function() {
 
-    $('#click tbody tr').click(function() {
+    $('#click tbody tr').click(function(event) {
         var href = $(this).attr("data-href");
         if(href) {
             window.location = href;
+            event.stopPropagation();
         }
     });
 
