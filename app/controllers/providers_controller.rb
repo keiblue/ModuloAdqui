@@ -71,6 +71,9 @@ class ProvidersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_provider
       @provider = Provider.find(params[:id])
+      @address= Address.all
+      @services = Service.all
+      @contrato = Agreement.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

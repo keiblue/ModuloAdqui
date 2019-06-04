@@ -10,40 +10,31 @@
       </ul>
     </div>
   <% end %>
-<% if session[:admin] || session[:super] %>
-  <div class="field">
-    <%= form.label :user_name %>>
-    <%= form.select :user_id, options_from_collection_for_select(@users, "id", "name")%>
-  </div>
-<% else %>
+<%# if session[:admin] || session[:super] %>
+  <!--<div class="field">
+    <%#= form.label :user_name %>>
+    <%#= form.select :user_id, options_from_collection_for_select(@users, "id", "name")%>
+  </div>-->
+<%# else %>
 <%= form.hidden_field :user_id, :value => current_user.id %>
-<%end%>
+<%#end%>
 
-  <div class="field">
+  <div class="field form-group ">
     <%= form.label 'Proveedor' %>
-    <%= form.collection_select :provider_id, @providers , "id", "name"%>
-  </div>
-
-  <div class="field">
+    <%= form.collection_select :provider_id, @providers , "id", "name", class: 'form-control'%>
     <%= form.label 'Estado' %>
-    <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status")%>
-  </div>
-
-   <div class="field">
+    <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status"), class: 'form-control'%>
     <%= form.label 'Tipo De pago' %>
-    <%= form.select :payment_id, options_from_collection_for_select(@payments, "id", "method")%>
+    <%= form.select :payment_id, options_from_collection_for_select(@payments, "id", "method"), class: 'form-control'%>
   </div>
 
-<div class="table col">
+<div class="table table-striped">
   <p> Detalle Orden </p>
   <table>
   <thead>
     <tr>
       <th>
         #
-      </th>
-      <th>
-        Id
       </th>
       <th>
         Descripcion 
@@ -60,7 +51,6 @@
     <%  @items.each do |item|%>
     <tr>
       <td><%= check_box_tag "items[]", item.id %></td>
-      <td><%= item.id %> </td>
       <td><%= item.nombre %> </td>
       <td>$<%=  item.precio %> </td>
       <td><%= number_field_tag "counts[]", value = nil  %> </td>
@@ -72,6 +62,6 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary form-control' %>
   </div>
 <% end %>

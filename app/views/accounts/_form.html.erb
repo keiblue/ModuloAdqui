@@ -11,45 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
+      <%= form.label :name %><br>
+    <%= form.text_field :name, class: 'form-control' %><br>
+        <%= form.label :last_name %><br>
+    <%= form.text_field :last_name, class: 'form-control' %><br>
+    <%= form.label 'RUT' %> <br>
+    <div class="input-group">
+      <%= form.text_field :rutito, class: 'form-control',style: 'width:70%' %>
+      <span class="input-group-addon">-</span>
+      <%= form.text_field :rutito_dv, style: 'width:20%;', class: 'form-control' %>
+    </div>
     <%= form.label :email %><br />
-    <%= form.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
+    <%= form.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    <%= form.label 'rol' %><br>
+    <%= form.select(:role_id, options_from_collection_for_select(@roles, "id", "role_name" ) , class: 'form-control') %><br>
     <%= form.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= form.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
+    <%= form.password_field :password, autocomplete: "new-password", class: 'form-control' %>
     <%= form.label :password_confirmation %><br />
-    <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rut %>
-    <%= form.text_field :rutito %>-<%= form.text_field :rutito_dv %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :role %>
-    <%= form.select(:role_id, options_from_collection_for_select(@roles, "id", "role_name" ) ) %>
+    <%= form.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary form-control' %>
   </div>
 <% end %>

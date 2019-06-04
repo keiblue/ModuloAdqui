@@ -1,8 +1,13 @@
 <% if session[:admin]%>
-<h1>Editar Usuario</h1>
+<div class="container" >
+  <div class="col-6 offset-3 row justify-content-center">
+    <div class="jumbotron ">
+        <h2 class="text-center">Editar Usuario</h2>
+        <%= render 'form', user: @user %>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
+        <%= link_to 'Show', @user %>|
 <%end%>
 <%= link_to 'Back', users_path %>
+    </div>
+  </div>
+</div>

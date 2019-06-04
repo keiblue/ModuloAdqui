@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
     @user = User.new(account_params)
 
     respond_to do |format|
-      if @user.save
+      if @user.save 
         format.html { redirect_to @user, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

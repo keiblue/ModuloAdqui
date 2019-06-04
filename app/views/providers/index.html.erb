@@ -1,23 +1,22 @@
 <h1>Proveedores</h1>
 
 <div class="card">
-  <table class="table table-striped">
+  <table class="table table-striped" id="click">
     <thead>
       <tr>
         <th>Nombre</th>
         <th>Rut</th>
         <th>Servicio</th>
-        <th colspan="3">Opciones</th>
+        <th colspan="2">Opciones</th>
       </tr>
     </thead>
 
   <tbody>
       <% @providers.each do |provider| %>
-        <tr>
+        <tr data-href=<%= provider_path(provider.id)%>>
           <td><%= provider.name %></td>
-          <td><%= provider.rut %></td>
+          <td><%= provider.rut %>-<%= provider.rut_dv%></td>
           <td><%= provider.service.name %></td>
-          <td><%= link_to 'Ver', provider %></td>
           <td><%= link_to 'Editar', edit_provider_path(provider) %></td>
           <td><%= link_to 'Eliminar', provider, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
         </tr>
