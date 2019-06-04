@@ -20,11 +20,12 @@
 
 $(document).on('turbolinks:load',function() {
 
-    $('#click tbody tr').click(function(event) {
+    $('#click tbody tr').click(function() {
         var href = $(this).attr("data-href");
         if(href) {
             window.location = href;
-            event.stopPropagation();
+            stopPropagation();
         }
     });
 });
+
