@@ -15,3 +15,9 @@
  */
 @import 'bootstrap';
 
+#click tbody tr:hover{
+    background: rgb(60, 71, 138);
+    color: aliceblue;
+    cursor: pointer;
+}
+

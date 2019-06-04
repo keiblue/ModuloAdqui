@@ -17,3 +17,14 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+$(document).ready(function() {
+
+    $('#click tbody tr').click(function() {
+        var href = $(this).attr("data-href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});

@@ -1,7 +1,8 @@
 
     <h2> <em> Bienvenido <%= current_user.name%> <%= current_user.last_name%> </em> </h2> 
 <div class="card">
-  <table class="table table-striped">
+  <table class="table table-striped" id="click">
+  <thead>
     <tr>
       <th>Id</th>
       <th>Proveedor</th>
@@ -9,20 +10,25 @@
       <th>Usuario</th>
       <th>rut usuario</th>
       <th>Fecha solicitud</th>
+      <th>Estado</th>
       <th>sucursal</th>
       <th>direccion suursal</th>
-    </tr> 
+    </tr>
+  <thead> 
+  <tbody>
     <% @orders.each do|o| %>
-    <tr>
+      <tr data-href=<%= order_path(o.id) %>>
       <td><%= o.id%></td>
       <td><%=o.provider.name%></td>
       <td><%=o.provider.rut%>-<%=o.provider.rut_dv%></td>
       <td><%=o.user.name%> <%=o.user.last_name%></td> 
       <td><%=o.user.rutito%>-<%= o.user.rutito_dv%></td>
-      <td><%= o.created_at%></td> 
+      <td><%= o.created_at.strftime("%d/%m/%y") %></td> 
+      <td><%= o.status.status%></td>
       <td></h5><%= o.store.name%></td>
       <td><%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %></td> 
       </tr>
     <% end %>
+  </tbody>
   </table>
 </div>
