@@ -11,8 +11,7 @@ class User < ApplicationRecord
   def update_orders
     orders = Order.where(user_id: self.id)
     orders.each do |order|
-      order.user.id = 1
-      order.save
+      order.update(user_id: 1)
     end
   end
 end
