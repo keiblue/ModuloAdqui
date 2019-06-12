@@ -1,0 +1,37 @@
+<p style="display: inline;vertical-align: top;line-height: 28px;">
+    <h1 style="display:inline">Usuarios</h1> 
+    <h4 style="display:inline">
+      <mark><%= link_to 'Nuevo', new_user_path %></mark>
+    </h4>
+</p>
+
+<% if session[:admin] %>
+<div class="card">
+  <table class="table table-striped" id="click">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Rut</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Rol</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr data-href=<%= user_path(user.id)%>>
+          <td><%= user.email %></td>
+          <td><%= user.rutito %>-<%= user.rutito_dv %></td>
+          <td><%= user.name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.role.role_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%end%>

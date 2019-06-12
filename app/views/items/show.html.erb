@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @item.nombre %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @item.precio %>
+</p>
+
+<p>
+    <strong>Proveedor:</strong>
+    <%= @item.provider.name %>
+  </p>
+
+<%= link_to 'Edit', edit_item_provider_path(:id => @item.id, :provider_id => @item.provider.id) %> |
+<%= link_to 'Back', items_provider_path(:provider_id => @item.provider.id) %>

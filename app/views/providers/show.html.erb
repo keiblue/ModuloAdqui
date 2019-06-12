@@ -1,0 +1,55 @@
+
+
+<div class="card">
+
+  <div class="card-body">
+    <h5 class="card-title">Proveedor</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <strong>Razon Social:</strong> 
+        <%= @provider.name %><br>
+        <strong>RUT:</strong> 
+        <%= @provider.rut%>- <%= @provider.rut_dv%><br>
+        <strong>Direccion:</strong> 
+        <%= @provider.address.calle %>#<%= @provider.address.numero %>,<%= @provider.address.comuna%>,<%= @provider.address.region %><br>
+        <strong>N° Contrato:</strong>
+        <%= @provider.agreement.code %><br>
+        <strong>Servicio:</strong> 
+        <%= @provider.service.name %><br>
+        <strong>Items:</strong> 
+        <%= link_to 'items del proveedor', items_provider_path(:provider_id => @provider.id) %>|
+        <%= link_to 'nuevo item', new_item_provider_path(:provider_id => @provider.id) %><br>
+      </li>
+      <li class="list-group-item">
+        <strong>Ordenes:</strong>
+        <table class="table table-striped" id="click">
+        <thead>
+          <tr>
+              <th>Id</th>
+              <th>Usuario</th>
+              <th>rut usuario</th>
+              <th>Fecha solicitud</th>
+              <th>sucursal</th>
+              <th>direccion suursal</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <% @provider.orders.each do|o| %>
+            <tr data-href=<%= order_path(o.id)%>>
+            <td><%= o.id%></td>
+            <td><%=o.user.name%> <%=o.user.last_name%></td> 
+            <td><%=o.user.rutito%>-<%= o.user.rutito_dv%></td>
+            <td><%= o.created_at%></td> 
+            <td></h5><%= o.store.name%></td>
+            <td><%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %></td> 
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </li>
+  </div>
+</div>
+
+<%= link_to 'Editar', edit_provider_path(@provider) %> |
+<%= link_to 'Eliminar', @provider, method: :delete, data: { confirm: 'Estás seguro?' } %> |
+<%= link_to 'Volver', providers_path %>

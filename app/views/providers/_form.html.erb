@@ -1,0 +1,46 @@
+<%= form_with(model: provider, local: true) do |form| %>
+  <% if provider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(provider.errors.count, "error") %> prohibited this provider from being saved:</h2>
+
+      <ul>
+      <% provider.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label 'Razon social' %><br>
+    <%= form.text_field :name, class: 'form-control' %><br>
+    <%= form.label 'RUT' %> <br>
+    <div class="input-group">
+    <%= form.text_field :rut, class: 'form-control',style: 'width:70%' %>
+    <span class="input-group-addon">-</span>
+    <%= form.text_field :rut_dv, style: 'width:20%;', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Dirreccion' %>
+    <%= form.select :address_id, options_from_collection_for_select(@address, "id", "calle"), class: 'form-control'%><br>
+    <%= link_to 'Crear Direccion', new_address_path%>
+  </div>
+
+  <div class="field">
+    <%= form.label 'tipo servicio' %>
+    <%= form.select :service_id, options_from_collection_for_select(@services, "id", "name"), class: 'form-control'%><br>
+    <%= link_to 'Crear servicio', new_service_path %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'codigo contrato' %>
+    <%= form.select :agreement_id, options_from_collection_for_select(@contrato, "id", "code"), class: 'form-control'%><br>
+    <%= link_to 'Agregar Contrato', new_agreement_path%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary form-control' %>
+  </div>
+<% end %>

@@ -1,0 +1,56 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+<div class="field form-group">
+      <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %><br>
+        <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, class: 'form-control' %><br>
+
+    <%= f.label 'RUT' %> <br>
+    <div class="input-group">
+      <%= f.text_field :rutito, class: 'form-control', style: 'width:70%', disabled: '' %>
+      <span class="input-group-addon">-</span>
+      <%= f.text_field :rutito_dv, style: 'width:20%;', class: 'form-control', disabled: '' %>
+    </div>
+    
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+
+    <%= f.label 'rol' %><br>
+    <%= f.select(:role_id, options_for_select([[current_user.role.role_name, current_user.role.id]]),{} , {class: 'form-control'}) %><br>
+
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label "Nueva Contraseña" %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> caracteres mínimos</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Confirmar Nueva Contraseña" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Contraseña Actual' %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control'%>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Actualizar", class: 'btn btn-primary form-control' %>
+  </div>
+
+<% end %>

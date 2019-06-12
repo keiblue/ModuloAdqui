@@ -1,0 +1,33 @@
+<p style="display: inline;vertical-align: top;line-height: 28px;">
+    <h1 style="display:inline">Ordenes</h1> 
+    <h4 style="display:inline">
+      <mark><%= link_to 'Nuevo', new_order_path %></mark>
+    </h4>
+</p>
+
+<div class="card">
+  <table class="table table-striped" id="click">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Proveedor</th>
+        <th>Fecha Orden</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr data-href=<%= order_path(order.id)%>>
+          <td><%= order.id%></td>
+          <td><%= order.provider.name%></td>
+          <td><%= order.created_at.strftime("%d/%m/%y") %></td>
+          <td><%= order.status.status%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+

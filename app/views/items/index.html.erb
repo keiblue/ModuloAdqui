@@ -1,0 +1,60 @@
+<% if  @provider_param %>
+<h1>Items de "<%= @provider.name %>"</h1>
+<%else%>
+  <h1>Items (todos)</h1>
+<%end%>
+<div class="card">
+  <table class="table table-striped" id="click">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <% if  @provider_param %>
+          <th colspan="3"></th>
+        <%else%>
+          <th>Proveedor</th>
+          <th colspan="2"></th>
+        <%end%>
+      </tr>
+    </thead>
+
+  <tbody>
+      <% @items.each do |item| %>
+        <% if  @provider_param %>
+        <tr data-href=<%= item_provider_path(:id => item.id, :provider_id => @provider.id) %>>
+        <%else%>
+        <tr data-href=<%= item_path(:id => item.id) %>>
+        <%end%>
+          <td><%= item.nombre %></td>
+          <td><%= item.precio %></td>
+          <% if @provider_param %>
+            <% if session[:admin] || session[:super] %>
+            <td><%= link_to 'Editar', edit_item_provider_path(:id => item.id, :provider_id => @provider.id) %></td>
+            <td><%= link_to 'Eliminar', delete_item_provider_path(:id => item.id, :provider_id => @provider.id), method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+            <% end %>
+          <% else %>
+            <td><%= item.provider.name %></td>
+            <% if session[:admin] || session[:super] %>
+            <td><%= link_to 'Editar', edit_item_path(item) %></td>
+            <td><%= link_to 'Eliminar', item_path(item), method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<% if @provider_param %>
+  <% if session[:admin] || session[:super] %>
+  <%= link_to 'Nuevo Item', new_item_provider_path(:provider_id => @provider.id) %>
+  <% end %>
+  <%= link_to 'Volver', provider_path(@provider) %>
+<% else %>
+  <% if session[:admin] || session[:super] %>
+  <%= link_to 'Nuevo Item', new_item_path %>
+  <% end %>
+  <%= link_to 'Volver', items_path %>
+<% end %>

@@ -1,0 +1,67 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%# if session[:admin] || session[:super] %>
+  <!--<div class="field">
+    <%#= form.label :user_name %>>
+    <%#= form.select :user_id, options_from_collection_for_select(@users, "id", "name")%>
+  </div>-->
+<%# else %>
+<%= form.hidden_field :user_id, :value => current_user.id %>
+<%#end%>
+
+  <div class="field form-group ">
+    <%= form.label 'Proveedor' %>
+    <%= form.collection_select :provider_id, @providers , "id", "name", class: 'form-control'%>
+    <%= form.label 'Estado' %>
+    <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status"), class: 'form-control'%>
+    <%= form.label 'Tipo De pago' %>
+    <%= form.select :payment_id, options_from_collection_for_select(@payments, "id", "method"), class: 'form-control'%>
+  </div>
+
+<div class="table table-striped">
+  <p> Detalle Orden </p>
+  <table>
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Descripcion 
+      </th>
+      <th>
+        Valor unitario 
+      </th>
+      <th>
+        cantidad 
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%  @items.each do |item|%>
+    <tr>
+      <td><%= check_box_tag "items[]", item.id %></td>
+      <td><%= item.nombre %> </td>
+      <td>$<%=  item.precio %> </td>
+      <td><%= number_field_tag "counts[]", value = nil  %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary form-control' %>
+  </div>
+<% end %>

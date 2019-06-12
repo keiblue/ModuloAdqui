@@ -1,0 +1,31 @@
+<p style="display: inline;vertical-align: top;line-height: 28px;">
+    <h1 style="display:inline">Proveedores</h1> 
+    <h4 style="display:inline">
+      <mark><%= link_to 'Nuevo', new_provider_path %></mark>
+    </h4>
+</p>
+
+
+<div class="card">
+  <table class="table table-striped" id="click">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Rut</th>
+        <th>Servicio</th>
+      </tr>
+    </thead>
+
+  <tbody>
+      <% @providers.each do |provider| %>
+        <tr data-href=<%= provider_path(provider.id)%>>
+          <td><%= provider.name %></td>
+          <td><%= provider.rut %>-<%= provider.rut_dv%></td>
+          <td><%= provider.service.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
