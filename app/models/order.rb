@@ -26,12 +26,8 @@ class Order < ApplicationRecord
         unless @items.nil?
             count = @counts.reject(&:blank?)
             @items.each_with_index do |item_id, index|
-                item = Item.find(item_id)
-                provider_id = item.provider.id
-                if provider_id == self.provider.id
-                    unless item_id == 0 
-                    Detail.create(order_id: self.id, item_id: item_id ,count: count[index] )
-                    end
+                unless item_id == 0 
+                Detail.create(order_id: self.id, item_id: item_id ,count: count[index] )
                 end
             end            
         end
