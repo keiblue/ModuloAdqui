@@ -1,8 +1,10 @@
 <p style="display: inline;vertical-align: top;line-height: 28px;">
-    <h1 style="display:inline">Proveedores</h1> 
+    <h1 style="display:inline">Proveedores</h1>
+  <% if session[:admin] %>
     <h4 style="display:inline">
       <mark><%= link_to 'Nuevo', new_provider_path %></mark>
     </h4>
+ <% end %>
 </p>
 
 
