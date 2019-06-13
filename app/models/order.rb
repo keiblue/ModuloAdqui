@@ -29,7 +29,7 @@ class Order < ApplicationRecord
                 item = Item.find(item_id)
                 provider_id = item.provider.id
                 if provider_id == self.provider.id
-                    unless item_id == 0 
+                    unless item_id == 0 || count[index].nil?
                     Detail.create(order_id: self.id, item_id: item_id ,count: count[index] )
                     end
                 end
