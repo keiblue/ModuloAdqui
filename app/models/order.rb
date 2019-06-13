@@ -15,22 +15,23 @@ class Order < ApplicationRecord
     #custom setter
     def items=(items)
         @items = items
-        puts @items
+        #puts @items
     end
     def items_counts=(counts)
         @counts = counts  
-        puts @counts
     end
 
     def save_items
         unless @items.nil?
-            count = @counts.reject(&:blank?)
-            @items.each_with_index do |item_id, index|
-                item = Item.find(item_id)
-                provider_id = item.provider.id
-                if provider_id == self.provider.id
-                    unless item_id == 0 || count[index].nil?
-                    Detail.create(order_id: self.id, item_id: item_id ,count: count[index] )
+            @items.each do |item_id|
+                unless item_id["id"] == '0'
+                    item = Item.find(item_id["id"])
+                    provider_id = item.provider.id
+                    if provider_id == self.provider.id
+                        unless item_id["cant"] == '0' || item_id["cant"].nil? || item_id["cant"].blank?
+                            puts  item_id["cant"]
+                            Detail.create(order_id: self.id, item_id: item_id["id"] ,count: item_id["cant"] )
+                        end
                     end
                 end
             end            
