@@ -33,7 +33,11 @@ class OrdersController < ApplicationController
   def edit
     @users = User.all
     @providers= Provider.all
+    if session[:admin]
     @status = Status.all
+    else
+    @status = Status.all.where.not(id: 4)
+    end
     @items = Item.all
     @payments = Payment.all
   

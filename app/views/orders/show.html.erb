@@ -92,7 +92,7 @@
 
 <%= link_to 'exportar a PDF', order_path(format: :pdf), target: :_blank %>
 
-<% if session[:admin] %>
+<% if session[:admin] || session[:super] %>
 <%= link_to 'Editar', edit_order_path(@order) %> 
 <%= link_to 'Eliminar', @order, method: :delete, data: { confirm: 'Estás seguro?' } %>
 <% end %>
