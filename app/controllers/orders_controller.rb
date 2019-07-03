@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    @order_new = true 
     @order = Order.new
     @users = User.all
     @providers= Provider.all

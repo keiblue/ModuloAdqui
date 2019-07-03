@@ -22,8 +22,12 @@
   <div class="field form-group ">
     <%= form.label 'Proveedor' %>
     <%= form.collection_select :provider_id, @providers , "id", "name", class: 'form-control'%>
+    <% unless @order_new && !@order_new.nil? %>
     <%= form.label 'Estado' %>
     <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status"), class: 'form-control'%>
+    <% else%>
+    <%= form.hidden_field :status_id, :value => 3 %>
+    <% end %>
     <%= form.label 'Tipo De pago' %>
     <%= form.select :payment_id, options_from_collection_for_select(@payments, "id", "method"), class: 'form-control'%>
   </div>

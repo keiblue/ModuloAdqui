@@ -17,6 +17,9 @@ class Order < ApplicationRecord
         @items = items
         #puts @items
     end
+    def new_order=()
+        return 3
+    end
     def items_counts=(counts)
         @counts = counts  
     end
