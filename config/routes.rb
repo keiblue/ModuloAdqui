@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   delete 'accounts/:id', action: :destroy, controller: 'accounts'
 
   get 'provider/:provider_id/items/', action: :index, controller: 'items', as:'items_provider'
+  post 'provider/:id/items/', action: :get_items, controller: 'providers'
   get 'provider/:provider_id/items/new/', action: :new, controller: 'items', as:'new_item_provider'
   get 'provider/:provider_id/items/:id/', action: :show, controller: 'items', as:'item_provider'
   get 'provider/:provider_id/items/:id/edit/', action: :edit, controller: 'items', as:'edit_item_provider'

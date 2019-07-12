@@ -25,16 +25,16 @@ class OrdersController < ApplicationController
     @users = User.all
     @providers= Provider.all
     @status = Status.all
-    @items = Item.all
+    @items = @providers.first.items
     @payments = Payment.all
   end
 
   # GET /orders/1/edit
   def edit
     @users = User.all
-    @providers= Provider.all
+    @provider= Order.find(params[:id]).provider
     @status = Status.all
-    @items = Item.all
+    @items = @provider.items
     @payments = Payment.all
   
   end

@@ -21,7 +21,11 @@
 
   <div class="field form-group ">
     <%= form.label 'Proveedor' %>
-    <%= form.collection_select :provider_id, @providers , "id", "name", class: 'form-control'%>
+    <% unless @order_new && !@order_new.nil? %>
+    <%= form.select(:provider_id, options_for_select([[@provider.name, @provider.id]]), {class: 'form-control'})%>
+    <% else %>
+    <%= form.collection_select :provider_id, @providers , "id", "name", {class: 'form-control'}, {:onchange => "filter_items(); return false;"}%>
+    <% end %>
     <% unless @order_new && !@order_new.nil? %>
     <%= form.label 'Estado' %>
     <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status"), class: 'form-control'%>
@@ -34,7 +38,7 @@
 
 <div class="table table-striped">
   <p> Detalle Orden </p>
-  <table>
+  <table id="table">
   <thead>
     <tr>
       <th>
@@ -51,20 +55,11 @@
       </th>
     </tr>
   </thead>
-  <tbody>
-    <%  @items.each do |item|%>
-    <tr>
-      <%= hidden_field_tag "items[][id]" , 0 %>
-      <td><%= check_box_tag "items[][id]", item.id %></td>
-      <td><%= item.nombre %> </td>
-      <td>$<%=  item.precio %> </td>
-      <td><%= number_field_tag "items[][cant]" %> </td>
-    </tr>
-    <% end %>
+  <tbody id="body_table">
+    <%= render :partial => "items", :locals => {:items => @items } %>
   </tbody>
 </table>
 </div>
-
 
   <div class="actions">
     <%= form.submit class: 'btn btn-primary form-control' %>
