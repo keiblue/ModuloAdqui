@@ -88,7 +88,9 @@
             </tr>
           </tbody>
         </table>
-
+<% @order.order_histories.each do |history|%>
+  <%= history["user_id"]%>
+<% end %>
 
 <%= link_to 'exportar a PDF', order_path(format: :pdf), target: :_blank %>
 
