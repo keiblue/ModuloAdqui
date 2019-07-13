@@ -39,12 +39,6 @@ class OrdersController < ApplicationController
     @status = Status.all.where.not(id: 4)
     end
     @items = Item.all
-<<<<<<< HEAD
-    @provider= Order.find(params[:id]).provider
-    @status = Status.all
-    @items = @provider.items
-=======
->>>>>>> e076f65bc60575b2ccf1414a0d2fd2b4497e45f1
     @payments = Payment.all
   
   end
