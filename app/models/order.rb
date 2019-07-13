@@ -56,7 +56,7 @@ class Order < ApplicationRecord
     end
 
     def save_history
-        OrderHistory.create(user_id: self.user_id , orden_id: self.id , status_id: self.status_id)
+        OrderHistory.create(user_id: self.user_id , order_id: self.id , status_id: self.status_id)
     end
 
     def update_history
