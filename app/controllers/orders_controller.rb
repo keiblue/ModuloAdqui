@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
     if session[:admin]
     @status = Status.all
     else
-    @status = Status.all.where.not(id: 4)
+    @status = Status.find(2,3,5)
     end
     @items = @provider.items
     @payments = Payment.all
