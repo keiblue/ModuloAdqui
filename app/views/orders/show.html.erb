@@ -105,9 +105,11 @@
           </thead>
           <tbody>
               <% @order.order_histories.each do |history|%>
+              <% user= User.find(history["user_id"]) %>
+              <% status= Status.find(history["status_id"]).status %>
             <tr>
-              <td><%= history["user_id"]%> </td>
-              <td><%= history["status_id"]%> </td>
+              <td><%=user.name %> <%=user.last_name %></td>
+              <td><%= status %> </td>
               <td><%= history["created_at"]%> </td>
             </tr>
             <% end %>
