@@ -21,11 +21,11 @@
 
   <div class="field form-group ">
     <%= form.label 'Proveedor' %>
-    <%# unless @order_new && !@order_new.nil? %>
-    <%#= form.select(:provider_id, options_for_select([[@provider.name, @provider.id]]), {class: 'form-control'})%>
-    <%# else %>
+    <% unless @order_new && !@order_new.nil? %>
+    <%= form.select(:provider_id, options_for_select([[@provider.name, @provider.id]]), {class: 'form-control'})%>
+    <% else %>
     <%= form.collection_select :provider_id, @providers , "id", "name", {class: 'form-control'}, {:onchange => "filter_items(); return false;"}%>
-    <%# end %>
+    <% end %>
     <% unless @order_new && !@order_new.nil? %>
     <%= form.label 'Estado' %>
     <%= form.select :status_id, options_from_collection_for_select(@status, "id", "status"), class: 'form-control'%>
