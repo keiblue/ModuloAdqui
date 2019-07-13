@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @users = User.all
     @providers= Provider.all
     @status = Status.all
-    @items = Item.all
+    @items = @providers.first.items
     @payments = Payment.all
   end
 

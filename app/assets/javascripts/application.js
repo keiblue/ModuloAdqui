@@ -227,3 +227,20 @@ function validateRut(enviar)
         alert('El Rut ingresado es incorrecto');
     }
 }
+
+
+/** filter items for provider */
+function filter_items()
+{
+	provider = $('#order_provider_id').val();
+	$.post('/provider/'+provider+'/items/', function(data, status){
+		if(status){
+			items = data;
+			$('#table > tbody').empty();
+			tabla = document.getElementById("body_table");
+			items.forEach(function(item, index){
+				$('#table > tbody:last-child').append('<tr><td><input type="checkbox" name="items[][id]" id="items__id" value="'+item.id+'"></td><td>'+item.nombre+'</td><td>'+item.precio+'</td><td><input type="number" name="items[][cant]" id="items__cant"></td></tr>');
+			});
+		}
+	});
+}

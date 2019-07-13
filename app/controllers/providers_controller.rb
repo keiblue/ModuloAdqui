@@ -1,10 +1,16 @@
 class ProvidersController < ApplicationController
+  skip_before_action :verify_authenticity_token  
   before_action :set_provider, only: [:show, :edit, :update, :destroy]
 
   # GET /providers
   # GET /providers.json
   def index
     @providers = Provider.all
+  end
+
+  def get_items
+    @items = Provider.find(params[:id]).items
+    render json: @items 
   end
 
   # GET /providers/1
