@@ -6,11 +6,12 @@ class Order < ApplicationRecord
     has_many :details
     has_many :items , through: :details
     belongs_to :payment
+    has_many :orders_histories
     
     
 
-    after_create :save_items
-    after_update :update_items
+    after_create :save_items, :save_history
+    after_update :update_items, :update_history
     after_destroy :destroy_detail
     #custom setter
     def items=(items)
@@ -52,5 +53,13 @@ class Order < ApplicationRecord
     def update_items
         self.destroy_detail
         self.save_items
+    end
+
+    def save_history
+        OrderHistory.create(user_id: self.user_id , orden_id: self.id , status_id: self.status_id)
+    end
+
+    def update_history
+        self.save_history
     end
 end

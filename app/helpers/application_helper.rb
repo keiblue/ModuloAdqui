@@ -4,7 +4,7 @@ module ApplicationHelper
           session[:admin]= true
           session[:super]= false
           session[:emple]= false
-        elsif user_signed_in? && current_user.role.id == 2
+        elsif user_signed_in? && current_user.role.id == 3
           session[:admin]= false
           session[:super]= true
           session[:emple]= false

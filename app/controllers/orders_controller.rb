@@ -32,9 +32,13 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @users = User.all
-    @provider= Order.find(params[:id]).provider
+    @providers= Provider.all
+    if session[:admin]
     @status = Status.all
-    @items = @provider.items
+    else
+    @status = Status.all.where.not(id: 4)
+    end
+    @items = Item.all
     @payments = Payment.all
   
   end
