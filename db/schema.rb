@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 2019_07_12_235807) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", default: 1
-    t.bigint "orden_id", default: 1
+    t.bigint "order_id", default: 1
     t.bigint "status_id", default: 1
-    t.index ["orden_id"], name: "index_order_histories_on_orden_id"
+    t.index ["order_id"], name: "index_order_histories_on_order_id"
     t.index ["status_id"], name: "index_order_histories_on_status_id"
     t.index ["user_id"], name: "index_order_histories_on_user_id"
   end
