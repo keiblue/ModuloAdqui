@@ -6,7 +6,7 @@ class Order < ApplicationRecord
     has_many :details
     has_many :items , through: :details
     belongs_to :payment
-    has_many :orders_histories
+    has_many :order_histories
     
     
 
