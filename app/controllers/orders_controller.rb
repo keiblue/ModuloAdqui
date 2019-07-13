@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
     else
     @status = Status.all.where.not(id: 4)
     end
-    @items = Item.all
+    @items = @provider.items
     @payments = Payment.all
   
   end
