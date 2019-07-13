@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @users = User.all
     @providers= Provider.all
     @status = Status.all
-    @items = Item.all
+    @items = @providers.first.items
     @payments = Payment.all
   end
 
@@ -39,6 +39,9 @@ class OrdersController < ApplicationController
     @status = Status.all.where.not(id: 4)
     end
     @items = Item.all
+    @provider= Order.find(params[:id]).provider
+    @status = Status.all
+    @items = @provider.items
     @payments = Payment.all
   
   end
