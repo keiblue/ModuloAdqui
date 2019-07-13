@@ -88,9 +88,32 @@
             </tr>
           </tbody>
         </table>
-<% @order.order_histories.each do |history|%>
-  <%= history["user_id"]%>
-<% end %>
+<br>
+<table id="historial">
+          <thead>
+            <tr>
+              <th>
+                id_usuario
+              </th>
+              <th>
+                id_status
+              </th>
+              <th>
+                fecha
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @order.order_histories.each do |history|%>
+            <tr>
+              <td><%= history["user_id"]%> </td>
+              <td><%= history["status_id"]%> </td>
+              <td>$<%= history["user_id"]%> </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
 
 <%= link_to 'exportar a PDF', order_path(format: :pdf), target: :_blank %>
 
