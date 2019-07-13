@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :order_histories
   resources :payments
   resources :items
   resources :agreements

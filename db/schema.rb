@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_165926) do
+ActiveRecord::Schema.define(version: 2019_07_12_235807) do
 
   create_table "addresses", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "region"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 2019_06_13_165926) do
     t.datetime "updated_at", null: false
     t.bigint "provider_id", default: 1
     t.index ["provider_id"], name: "index_items_on_provider_id"
+  end
+
+  create_table "order_histories", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", default: 1
+    t.bigint "orden_id", default: 1
+    t.bigint "status_id", default: 1
+    t.index ["orden_id"], name: "index_order_histories_on_orden_id"
+    t.index ["status_id"], name: "index_order_histories_on_status_id"
+    t.index ["user_id"], name: "index_order_histories_on_user_id"
   end
 
   create_table "orders", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
