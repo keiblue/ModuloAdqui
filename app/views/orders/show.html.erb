@@ -107,10 +107,12 @@
               <% @order.order_histories.each do |history|%>
               <% user= User.find(history["user_id"]) %>
               <% status= Status.find(history["status_id"]).status %>
+              <% fecha= history["created_at"] %>
             <tr>
               <td><%=user.name %> <%=user.last_name %></td>
               <td><%= status %> </td>
               <td><%= history["created_at"]%> </td>
+              <td><%= fecha.year %>-<%= fecha.month %>-<%= fecha.day %> <%= fecha.hour %>:<%= fecha.min %></td>
             </tr>
             <% end %>
           </tbody>
