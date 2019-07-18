@@ -32,9 +32,11 @@ class OrdersController < ApplicationController
     @users = User.all
     @providers= Provider.all
     @status = Status.all
-
     @items = @providers.first.items
     @payments = Payment.all
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /orders/1/edit
