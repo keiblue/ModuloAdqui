@@ -1,9 +1,29 @@
 <%  @items.each do |item|%>
-    <tr>
-      <%= hidden_field_tag "items[][id]" , 0 %>
-      <td><%= check_box_tag "items[][id]", item.id %></td>
-      <td><%= item.nombre %> </td>
-      <td>$<%=  item.precio %> </td>
-      <td><%= number_field_tag "items[][cant]" %> </td>
-    </tr>
+      <% unless @order_new && !@order_new.nil? %>
+          <tr>
+          <% if @details_id.include?(item.id) && !@details_id.nil? %>
+            <% detalle_cant = @details.where(item_id: item.id).pluck(:count)[0] %>
+
+            <%= hidden_field_tag "items[][id]" , 0 %>
+            <td><%= check_box_tag "items[][id]", item.id ,true%></td>
+            <td><%= item.nombre %> </td>
+            <td>$<%=  item.precio %> </td>
+            <td><%= number_field_tag "items[][cant]", detalle_cant %> </td>
+          <%else%>
+            <%= hidden_field_tag "items[][id]" , 0 %>
+            <td><%= check_box_tag "items[][id]", item.id %></td>
+            <td><%= item.nombre %> </td>
+            <td>$<%=  item.precio %> </td>
+            <td><%= number_field_tag "items[][cant]" %> </td>
+          <%end%>
+        </tr>
+      <% else%>
+        <tr>
+          <%= hidden_field_tag "items[][id]" , 0 %>
+          <td><%= check_box_tag "items[][id]", item.id %></td>
+          <td><%= item.nombre %> </td>
+          <td>$<%=  item.precio %> </td>
+          <td><%= number_field_tag "items[][cant]" %> </td>
+        </tr>
+      <% end %>
 <% end %>
