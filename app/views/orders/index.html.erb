@@ -1,11 +1,9 @@
 <p style="display: inline;vertical-align: top;line-height: 28px;">
     <h1 style="display:inline">Ordenes</h1> 
 
-    <% if session[:admin] %>
     <h4 style="display:inline">
       <mark><%= link_to 'Nuevo', new_order_path , :remote => true %></mark>
     </h4>
-  <% end %>
 </p>
 
 <div class="card">
