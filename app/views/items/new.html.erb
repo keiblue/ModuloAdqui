@@ -1,10 +1,15 @@
-<h1>New Item</h1>
+<div class="container" >
+  <div class="col-4 offset-4 row justify-content-center">
+    <div class="jumbotron ">
+        <h2 class="text-center">Nuevo Item</h2>
+        <%= render 'form', item: @item %>
 
-<%= render 'form', item: @item %>
-
-<% if @provider_param %>
-    <%= link_to 'Volver', items_provider_path(:provider_id => @provider.id) %>|
-    <%= link_to 'Volver(Proveedor)', @provider %>
-<% else %>
-    <%= link_to 'Volver', items_path %>
-<% end %>
+        <% if @provider_param %>
+            <%= link_to 'Volver', items_provider_path(:provider_id => @provider.id) %>|
+            <%= link_to 'Volver(Proveedor)', @provider %>
+        <% else %>
+            <%= link_to 'Volver', items_path %>
+        <% end %>
+    </div>
+  </div>
+</div>

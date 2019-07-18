@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show,:history, :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
@@ -16,6 +16,12 @@ class OrdersController < ApplicationController
       format.pdf { render  template: 'orders/detalle', pdf: 'Detalle', layout: 'pdf.html'} 
     end
 
+  end
+
+  def history
+    respond_to do |format|
+      format.pdf { render  template: 'orders/history', pdf: 'History', layout: 'pdf.html'} 
+    end
   end
 
   # GET /orders/new

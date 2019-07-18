@@ -12,7 +12,7 @@
       <th>Fecha solicitud</th>
       <th>Estado</th>
       <th>sucursal</th>
-      <th>direccion suursal</th>
+      <th>direccion sucursal</th>
     </tr>
   <thead> 
   <tbody>
@@ -20,10 +20,10 @@
       <tr data-href=<%= order_path(o.id) %>>
       <td><%= o.id%></td>
       <td><%=o.provider.name%></td>
-      <td><%=o.provider.rut%>-<%=o.provider.rut_dv%></td>
+      <td><%=o.provider.rut%> - <%=o.provider.rut_dv%></td>
       <td><%=o.user.name%> <%=o.user.last_name%></td> 
-      <td><%=o.user.rutito%>-<%= o.user.rutito_dv%></td>
-      <td><%= o.created_at.strftime("%d/%m/%y") %></td> 
+      <td><%=o.user.rutito%> - <%= o.user.rutito_dv%></td>
+      <td><%= o.created_at.strftime("%d/%m/%y - %H:%M") %></td> 
       <td><%= o.status.status%></td>
       <td></h5><%= o.store.name%></td>
       <td><%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %></td> 
