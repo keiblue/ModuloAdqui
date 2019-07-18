@@ -2,7 +2,7 @@
     <h1 style="display:inline">Proveedores</h1>
   <% if session[:admin] %>
     <h4 style="display:inline">
-      <mark><%= link_to 'Nuevo', new_provider_path %></mark>
+      <mark><%= link_to 'Nuevo', new_provider_path, :remote=>true %></mark>
     </h4>
  <% end %>
 </p>
@@ -34,3 +34,4 @@
 </div>
 
 <br>
+<div id="new-provider" style="display:none:"></div>

@@ -25,7 +25,8 @@
   <div class="field">
     <%= form.label 'Dirreccion' %>
     <%= form.select :address_id, options_for_select(@address.map{|contact| ["#{contact.calle} ##{contact.numero}", contact.id]}), class: 'form-control'%><br>
-    <%= link_to 'Crear Direccion', new_address_path%>
+    <%= link_to 'Crear Direccion', new_address_path, :remote=>true %>
+    <div id="new-address" style="display:none:"></div>
   </div>
 
   <div class="field">

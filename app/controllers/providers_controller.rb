@@ -22,6 +22,9 @@ class ProvidersController < ApplicationController
 
   # GET /providers/new
   def new
+    respond_to do |format|
+      format.js
+    end
     @provider = Provider.new
     @address = Address.all
     @services = Service.all
