@@ -49,7 +49,8 @@ class OrdersController < ApplicationController
     @status = Status.find(2,3,5)
     end
     @items = @provider.items
-
+    @details_id = @order.details.pluck(:item_id)
+    @details = @order.details
     @payments = Payment.all
   
   end
