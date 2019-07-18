@@ -1,4 +1,12 @@
-<h1>Ordenes</h1>
+<p style="display: inline;vertical-align: top;line-height: 28px;">
+    <h1 style="display:inline">Ordenes</h1> 
+
+    <% if session[:admin] %>
+    <h4 style="display:inline">
+      <mark><%= link_to 'Nuevo', new_order_path %></mark>
+    </h4>
+  <% end %>
+</p>
 
 <div class="card">
   <table class="table table-striped" id="click">
@@ -8,7 +16,6 @@
         <th>Proveedor</th>
         <th>Fecha Orden</th>
         <th>Estado</th>
-        <th colspan="2">Opciones</th>
       </tr>
     </thead>
 
@@ -19,8 +26,6 @@
           <td><%= order.provider.name%></td>
           <td><%= order.created_at.strftime("%d/%m/%y") %></td>
           <td><%= order.status.status%></td>
-          <td><%= link_to 'Editar', edit_order_path(order) %></td>
-          <td><%= link_to 'Eliminar', order, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -29,4 +34,4 @@
 
 <br>
 
-<%= link_to 'Nueva Orden', new_order_path %>
+

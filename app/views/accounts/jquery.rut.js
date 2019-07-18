@@ -1,37 +1,24 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
-// vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require jquery
-//= require popper
-//= require bootstrap
-//= require_tree .
+//!     jQuery.rut.js
+//		Permission is hereby granted, free of charge, to any person obtaining a copy
+//		of this software and associated documentation files (the "Software"), to deal
+//		in the Software without restriction, including without limitation the rights
+//		to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//		copies of the Software, and to permit persons to whom the Software is
+//		furnished to do so, subject to the following conditions:
 
-$(document).on('turbolinks:load',function() {
+//		The above copyright notice and this permission notice shall be included in
+//		all copies or substantial portions of the Software.
 
-    $('#click tbody tr').click(function() {
-        var href = $(this).attr("data-href");
-        if(href) {
-            window.location = href;
-            stopPropagation();
+//		THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//		IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//		FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//		AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//		LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//		THE SOFTWARE.
 
-        }  
-    });
-});
-
-// Validar rut 
-
+//		Para obtener este programa bajo otra licencia, póngase en
+//		contacto con @pablomarambio en Twitter.
 ;(function($){
 	var defaults = {
 		validateOn: 'blur',
@@ -187,61 +174,5 @@ $(document).on('turbolinks:load',function() {
 		} else {
 			return false;
 		}
-    };
-    
-    $.formatRutV2 = function(rut, formatrut){
-		//var dv = $.computeDv(rut);
-		//var newrut = (rut.toString())+dv;
-		var result = $.validateRut(rut, null, { minimumLength: 8 });
-		switch(formatrut){
-			case true:
-				if(result){
-					return $.formatRut(newrut);
-				}else{
-					return rut;
-				}
-			default: return result;
-		}
-	}
-
-	$.clearFormat = function(rut){
-		return clearFormat(rut);
-	}
+	};
 })(jQuery);
-
-
-function validateRut(enviar)
-{
-    rut = document.getElementById('user_rutito').value;
-    verificador = document.getElementById('user_rutito_dv').value;
-    if ( rut != '' && verificador != '' )
-    {
-        $("#submitbutton").removeAttr("disabled");
-        rut = (rut.toString()) + verificador;
-        resultado = $.formatRutV2(rut, false);
-        if ( resultado ){
-            if (enviar) document.getElementById("form").submit();
-        }else{
-            alert('El Rut ingresado es incorrecto');
-        }
-    }else{
-        alert('El Rut ingresado es incorrecto');
-    }
-}
-
-
-/** filter items for provider */
-function filter_items()
-{
-	provider = $('#order_provider_id').val();
-	$.post('/provider/'+provider+'/items/', function(data, status){
-		if(status){
-			items = data;
-			$('#table > tbody').empty();
-			tabla = document.getElementById("body_table");
-			items.forEach(function(item, index){
-				$('#table > tbody:last-child').append('<tr><td><input type="checkbox" name="items[][id]" id="items__id" value="'+item.id+'"></td><td>'+item.nombre+'</td><td>'+item.precio+'</td><td><input type="number" name="items[][cant]" id="items__cant"></td></tr>');
-			});
-		}
-	});
-}

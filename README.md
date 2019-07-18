@@ -23,4 +23,7 @@ Things you may want to cover:
 
 * ...
 # Felipe 
-# Jose
+# Jose Garrido
+# Philippe Gac
+# Gabriel Carcamo
+

@@ -27,6 +27,8 @@
   <%= @user.role.role_name %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Editar', edit_user_path(@user) %> |
+<%= link_to 'Eliminar', @user, method: :delete, data: { confirm: 'Estás seguro?' } %> |
 <%end%>
-<%= link_to 'Back', users_path %>
+<%= link_to 'Volver', users_path %>
+

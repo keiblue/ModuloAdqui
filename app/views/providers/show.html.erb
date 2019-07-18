@@ -50,5 +50,6 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_provider_path(@provider) %> |
-<%= link_to 'Back', providers_path %>
+<%= link_to 'Editar', edit_provider_path(@provider) %> |
+<%= link_to 'Eliminar', @provider, method: :delete, data: { confirm: 'Estás seguro?' } %> |
+<%= link_to 'Volver', providers_path %>

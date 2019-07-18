@@ -20,20 +20,30 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+
+    @order_new = true 
     @order = Order.new
     @users = User.all
     @providers= Provider.all
     @status = Status.all
-    @items = Item.all
+
+    @items = @providers.first.items
     @payments = Payment.all
   end
 
   # GET /orders/1/edit
   def edit
     @users = User.all
+
+    @provider= Order.find(params[:id]).provider
     @providers= Provider.all
+    if session[:admin]
     @status = Status.all
-    @items = Item.all
+    else
+    @status = Status.find(2,3,5)
+    end
+    @items = @provider.items
+
     @payments = Payment.all
   
   end
@@ -43,7 +53,8 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.items= params[:items]
-    @order.items_counts = params[:counts]
+
+    #@order.items_counts = params[:counts]
 
     respond_to do |format|
       if @order.save
@@ -85,7 +96,8 @@ class OrdersController < ApplicationController
     def set_order
       @order = Order.find(params[:id])
       @order.items= params[:items]
-      @order.items_counts = params[:counts]
+
+      #@order.items_counts = params[:counts]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,4 +1,10 @@
-<h1>Usuarios</h1>
+<p style="display: inline;vertical-align: top;line-height: 28px;">
+    <h1 style="display:inline">Usuarios</h1> 
+    <h4 style="display:inline">
+      <mark><%= link_to 'Nuevo', new_user_path %></mark>
+    </h4>
+</p>
+
 
 <% if session[:admin] %>
 <div class="card">
@@ -10,7 +16,6 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Rol</th>
-        <th colspan="2"></th>
       </tr>
     </thead>
 
@@ -22,8 +27,6 @@
           <td><%= user.name %></td>
           <td><%= user.last_name %></td>
           <td><%= user.role.role_name %></td>
-          <td><%= link_to 'Editar', edit_user_path(user) %></td>
-          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -31,7 +34,5 @@
 </div>
 
 <br>
-
-<%= link_to 'Nuevo Usuario', new_user_path %>
 
 <%end%>

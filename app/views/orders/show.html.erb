@@ -88,11 +88,41 @@
             </tr>
           </tbody>
         </table>
+<br>
+<table id="articulos">
+          <thead>
+            <tr colspan="3"> <th> Historial </th></tr>
+            <tr>
+              <th>
+                usuario responsable
+              </th>
+              <th>
+                Estado
+              </th>
+              <th>
+                Fecha
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @order.order_histories.each do |history|%>
+              <% user= User.find(history["user_id"]) %>
+              <% status= Status.find(history["status_id"]).status %>
+              <% fecha= history["created_at"] %>
+            <tr>
+              <td><%=user.name %> <%=user.last_name %></td>
+              <td><%= status %> </td>
+              <td><%= fecha.year %>-<%= fecha.month %>-<%= fecha.day %> <%= fecha.hour %>:<%= fecha.min %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
 
 
 <%= link_to 'exportar a PDF', order_path(format: :pdf), target: :_blank %>
 
-<% if session[:admin] %>
+<% if session[:admin] || session[:super] %>
 <%= link_to 'Editar', edit_order_path(@order) %> 
+<%= link_to 'Eliminar', @order, method: :delete, data: { confirm: 'Estás seguro?' } %>
 <% end %>
 <%= link_to 'Volver', orders_path %>

@@ -1,4 +1,12 @@
-<h1>Proveedores</h1>
+<p style="display: inline;vertical-align: top;line-height: 28px;">
+    <h1 style="display:inline">Proveedores</h1>
+  <% if session[:admin] %>
+    <h4 style="display:inline">
+      <mark><%= link_to 'Nuevo', new_provider_path %></mark>
+    </h4>
+ <% end %>
+</p>
+
 
 <div class="card">
   <table class="table table-striped" id="click">
@@ -7,7 +15,6 @@
         <th>Nombre</th>
         <th>Rut</th>
         <th>Servicio</th>
-        <th colspan="2">Opciones</th>
       </tr>
     </thead>
 
@@ -17,8 +24,6 @@
           <td><%= provider.name %></td>
           <td><%= provider.rut %>-<%= provider.rut_dv%></td>
           <td><%= provider.service.name %></td>
-          <td><%= link_to 'Editar', edit_provider_path(provider) %></td>
-          <td><%= link_to 'Eliminar', provider, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -26,5 +31,3 @@
 </div>
 
 <br>
-
-<%= link_to 'Nuevo Proveedor', new_provider_path %>
