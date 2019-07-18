@@ -1,7 +1,7 @@
 <p style="display: inline;vertical-align: top;line-height: 28px;">
     <h1 style="display:inline">Usuarios</h1> 
     <h4 style="display:inline">
-      <mark><%= link_to 'Nuevo', new_user_path %></mark>
+      <mark><%= link_to 'Nuevo', new_user_path, :remote=>true %></mark>
     </h4>
 </p>
 
@@ -36,3 +36,4 @@
 <br>
 
 <%end%>
+<div id="new-user" style="display:none:"></div>
