@@ -24,7 +24,7 @@
         <tr data-href=<%= order_path(order.id)%>>
           <td><%= order.id%></td>
           <td><%= order.provider.name%></td>
-          <td><%= order.created_at.strftime("%d/%m/%y") %></td>
+          <td><%= order.created_at.year %>-<%= order.created_at.month %>-<%= order.created_at.day %> (<%= order.created_at.strftime('%H') %>:<%= order.created_at.strftime('%M') %>)</td>
           <td><%= order.status.status%></td>
         </tr>
       <% end %>
@@ -33,4 +33,5 @@
 </div>
 
 <br>
+
 

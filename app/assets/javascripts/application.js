@@ -25,6 +25,7 @@ $(document).on('turbolinks:load',function() {
         if(href) {
             window.location = href;
             stopPropagation();
+
         }  
     });
 });

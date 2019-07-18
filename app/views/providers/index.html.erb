@@ -14,6 +14,7 @@
       <tr>
         <th>Nombre</th>
         <th>Rut</th>
+        <th>Direccion</th>
         <th>Servicio</th>
       </tr>
     </thead>
@@ -21,8 +22,10 @@
   <tbody>
       <% @providers.each do |provider| %>
         <tr data-href=<%= provider_path(provider.id)%>>
+            <% address = provider.address%>
           <td><%= provider.name %></td>
           <td><%= provider.rut %>-<%= provider.rut_dv%></td>
+          <td><%= address.calle %> # <%= address.numero %>, <%= address.comuna %> </td>
           <td><%= provider.service.name %></td>
         </tr>
       <% end %>

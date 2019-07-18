@@ -1,33 +1,54 @@
 
 <% if session[:admin]%>
 <p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Rut:</strong>
-  <%= @user.rutito %>-<%= @user.rutito_dv %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role.role_name %>
-</p>
+  <div class="card-body">
+    <h5 class="card-title">Usuario</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <strong>Nombre:</strong> 
+        <%= @user.name %> <%= @user.last_name %><br>
+        <strong>RUT:</strong> 
+        <%= @user.rutito%> - <%= @user.rutito_dv%><br>
+        <strong>Email:</strong> 
+        <%= @user.email %><br>
+        <strong>Rol:</strong>
+        <%= @user.role.role_name %><br>
+      </li>
+      <li class="list-group-item">
+        <strong>Ordenes:</strong>
+        <table class="table table-striped" id="click">
+        <thead>
+          <tr>
+              <th>Id</th>
+              <th>Proveedor</th>
+              <th>Fecha solicitud</th>
+              <th>sucursal</th>
+              <th>direccion suursal</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <% @orders.each do|o| %>
+            <tr data-href=<%= order_path(o.id)%>>
+            <td><%= o.id%></td>
+            <td><%=o.provider.name%></td>
+            <td><%= o.created_at%></td> 
+            <td></h5><%= o.store.name%></td>
+            <td><%= o.store.address.calle %>#<%= o.store.address.numero %>,<%= o.store.address.comuna%>,<%= o.store.address.region %></td> 
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+      </li>
+  </div>
+</div>
 
 <%= link_to 'Editar', edit_user_path(@user) %> |
 <%= link_to 'Eliminar', @user, method: :delete, data: { confirm: 'Estás seguro?' } %> |
 <%end%>
-<%= link_to 'Volver', users_path %>
+<%= link_to 'Volver',users_path %>
+
+
+
+

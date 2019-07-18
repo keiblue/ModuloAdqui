@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_07_12_235807) do
 
   create_table "addresses", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_07_12_235807) do
   end
 
   create_table "details", options: "ENGINE=MyISAM DEFAULT CHARSET=utf8", force: :cascade do |t|
+
     t.integer "count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

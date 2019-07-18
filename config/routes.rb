@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :order_histories
   resources :payments
   resources :items
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
 
 
   root to: 'pages#home'
-
+  get 'history/:id', action: :history, controller: 'orders', :as => 'history'
   get 'accounts', action: :index, controller: 'accounts', as: 'users'
   get 'accounts/new', action: :new, controller: 'accounts', as: 'new_user'
   get 'accounts/:id', action: :show, controller: 'accounts', as: 'user'

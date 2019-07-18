@@ -5,11 +5,25 @@ body {
   #top {
     display: block;
     overflow: auto;
-    width: 15rem;
-    margin: auto;
+    width: 14rem;
+    margin: 0 0 30px 15px;
     border: 3px solid #757575;
-    padding: 10px;
+    padding:20px;
     text-align: center;
+    height: 7rem;
+    float: left;
+  }
+
+  #top-pdf {
+    display: block;
+    overflow: auto;
+    width: 14rem;
+    margin: 0 0 30px 15px;
+    border: 3px solid #757575;
+    padding:5 px;
+    text-align: center;
+    height: 7rem;
+    float: left;
   }
   
   #articulos {

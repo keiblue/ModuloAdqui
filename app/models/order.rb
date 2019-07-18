@@ -28,7 +28,7 @@ class Order < ApplicationRecord
     def save_items
         unless @items.nil?
             @items.each do |item_id|
-                unless item_id["id"] == '0'
+                unless item_id["id"].nil? || item_id["id"] == '0'
                     item = Item.find(item_id["id"])
                     provider_id = item.provider.id
                     if provider_id == self.provider.id

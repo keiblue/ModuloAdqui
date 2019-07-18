@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show,:history, :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
@@ -18,13 +18,21 @@ class OrdersController < ApplicationController
 
   end
 
+  def history
+    respond_to do |format|
+      format.pdf { render  template: 'orders/history', pdf: 'History', layout: 'pdf.html'} 
+    end
+  end
+
   # GET /orders/new
   def new
+
     @order_new = true 
     @order = Order.new
     @users = User.all
     @providers= Provider.all
     @status = Status.all
+
     @items = @providers.first.items
     @payments = Payment.all
   end
@@ -32,6 +40,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @users = User.all
+
     @provider= Order.find(params[:id]).provider
     @providers= Provider.all
     if session[:admin]
@@ -40,6 +49,7 @@ class OrdersController < ApplicationController
     @status = Status.find(2,3,5)
     end
     @items = @provider.items
+
     @payments = Payment.all
   
   end
@@ -49,6 +59,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.items= params[:items]
+
     #@order.items_counts = params[:counts]
 
     respond_to do |format|
@@ -91,6 +102,7 @@ class OrdersController < ApplicationController
     def set_order
       @order = Order.find(params[:id])
       @order.items= params[:items]
+
       #@order.items_counts = params[:counts]
     end
 

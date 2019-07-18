@@ -24,7 +24,7 @@
 
   <div class="field">
     <%= form.label 'Dirreccion' %>
-    <%= form.select :address_id, options_from_collection_for_select(@address, "id", "calle"), class: 'form-control'%><br>
+    <%= form.select :address_id, options_for_select(@address.map{|contact| ["#{contact.calle} ##{contact.numero}", contact.id]}), class: 'form-control'%><br>
     <%= link_to 'Crear Direccion', new_address_path%>
   </div>
 
