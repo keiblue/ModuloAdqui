@@ -7,10 +7,10 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  host: 160.153.77.70
+  host: 
   database: Adquisiciones
-  username: adquisicion
-  password: adquisicion
+  username: 
+  password: 
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
